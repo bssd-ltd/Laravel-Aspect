@@ -63,10 +63,8 @@ class TransactionInvoker implements Runnable
                     throw $exception;
                 }
             }
-            $database->rollBack();
             throw $exception;
         }
-
         return $result;
     }
 }
