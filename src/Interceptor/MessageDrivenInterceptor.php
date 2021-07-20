@@ -16,16 +16,16 @@ declare(strict_types=1);
  * Copyright (c) 2015-2020 Yuuki Takezawa
  *
  */
-namespace Ytake\LaravelAspect\Interceptor;
+namespace Bssd\LaravelAspect\Interceptor;
 
 use Ray\Aop\MethodInvocation;
 use Ray\Aop\MethodInterceptor;
 use Illuminate\Contracts\Bus\Dispatcher;
-use Ytake\LaravelAspect\Queue\LazyMessage;
-use Ytake\LaravelAspect\Queue\EagerMessage;
-use Ytake\LaravelAspect\Annotation\LazyQueue;
-use Ytake\LaravelAspect\Annotation\MessageDriven;
-use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
+use Bssd\LaravelAspect\Queue\LazyMessage;
+use Bssd\LaravelAspect\Queue\EagerMessage;
+use Bssd\LaravelAspect\Annotation\LazyQueue;
+use Bssd\LaravelAspect\Annotation\MessageDriven;
+use Bssd\LaravelAspect\Annotation\AnnotationReaderTrait;
 
 /**
  * Class MessageDrivenInterceptor

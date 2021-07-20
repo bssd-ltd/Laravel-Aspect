@@ -17,7 +17,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect;
+namespace Bssd\LaravelAspect;
 
 /**
  * Class NullAspectKernel

@@ -16,7 +16,7 @@ declare(strict_types=1);
  * Copyright (c) 2015-2020 Yuuki Takezawa
  *
  */
-namespace Ytake\LaravelAspect;
+namespace Bssd\LaravelAspect;
 
 /**
  * Interface AspectDriverInterface

@@ -17,7 +17,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Annotation;
+namespace Bssd\LaravelAspect\Annotation;
 
 use Monolog\Logger;
 use Doctrine\Common\Annotations\Annotation;

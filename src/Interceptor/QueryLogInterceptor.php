@@ -17,15 +17,15 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Interceptor;
+namespace Bssd\LaravelAspect\Interceptor;
 
 use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Log\LogManager;
 use Ray\Aop\MethodInterceptor;
 use Ray\Aop\MethodInvocation;
-use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
-use Ytake\LaravelAspect\Annotation\QueryLog;
+use Bssd\LaravelAspect\Annotation\AnnotationReaderTrait;
+use Bssd\LaravelAspect\Annotation\QueryLog;
 
 use function is_null;
 use function sprintf;
@@ -51,7 +51,7 @@ class QueryLogInterceptor extends AbstractLogger implements MethodInterceptor
      */
     public function invoke(MethodInvocation $invocation)
     {
-        /** @var \Ytake\LaravelAspect\Annotation\QueryLog $annotation */
+        /** @var \Bssd\LaravelAspect\Annotation\QueryLog $annotation */
         $annotation = $invocation->getMethod()->getAnnotation($this->annotation) ?? new $this->annotation([]);
         $this->subscribeQueryLog();
         $result = $invocation->proceed();

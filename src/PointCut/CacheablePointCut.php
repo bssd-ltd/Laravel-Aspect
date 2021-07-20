@@ -17,12 +17,12 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\PointCut;
+namespace Bssd\LaravelAspect\PointCut;
 
 use Illuminate\Contracts\Container\Container;
 use Ray\Aop\Pointcut;
-use Ytake\LaravelAspect\Annotation\Cacheable;
-use Ytake\LaravelAspect\Interceptor\CacheableInterceptor;
+use Bssd\LaravelAspect\Annotation\Cacheable;
+use Bssd\LaravelAspect\Interceptor\CacheableInterceptor;
 
 /**
  * Class CacheablePointCut

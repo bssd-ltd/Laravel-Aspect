@@ -17,12 +17,12 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\PointCut;
+namespace Bssd\LaravelAspect\PointCut;
 
 use Illuminate\Contracts\Container\Container;
 use Ray\Aop\Pointcut;
-use Ytake\LaravelAspect\Annotation\MessageDriven;
-use Ytake\LaravelAspect\Interceptor\MessageDrivenInterceptor;
+use Bssd\LaravelAspect\Annotation\MessageDriven;
+use Bssd\LaravelAspect\Interceptor\MessageDrivenInterceptor;
 
 /**
  * Class MessageDrivenPointCut

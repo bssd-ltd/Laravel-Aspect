@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -17,7 +18,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Transaction;
+namespace Bssd\LaravelAspect\Transaction;
 
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\QueryException;
@@ -33,7 +34,7 @@ class TransactionInvoker implements Runnable
     /**
      * TransactionInvoker constructor.
      *
-     * @param string|null $connection
+     * @param  string|null  $connection
      */
     public function __construct($connection)
     {
@@ -41,29 +42,26 @@ class TransactionInvoker implements Runnable
     }
 
     /**
-     * @param DatabaseManager $databaseManager
-     * @param string          $exceptionName
-     * @param callable        $invoker
+     * @param  DatabaseManager  $databaseManager
+     * @param  array            $expectedExceptions
+     * @param  callable         $invoker
      *
      * @return mixed
-     * @throws \Exception
+     * @throws \Throwable
      */
-    public function __invoke(DatabaseManager $databaseManager, string $exceptionName, callable $invoker)
+    public function __invoke(DatabaseManager $databaseManager, array $expectedExceptions, callable $invoker)
     {
         $database = $databaseManager->connection($this->connection);
         $database->beginTransaction();
         try {
-            $result = $invoker($databaseManager, $exceptionName);
+            $result = $invoker($databaseManager, $expectedExceptions);
             $database->commit();
         } catch (\Exception $exception) {
-            // for default Exception
-            if ($exception instanceof QueryException) {
-                $database->rollBack();
-                throw $exception;
-            }
-            if ($exception instanceof $exceptionName) {
-                $database->rollBack();
-                throw $exception;
+            foreach ($expectedExceptions as $expected) {
+                if ($exception instanceof $expected) {
+                    $database->rollBack();
+                    throw $exception;
+                }
             }
             $database->rollBack();
             throw $exception;

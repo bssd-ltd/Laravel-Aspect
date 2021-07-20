@@ -17,7 +17,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Matcher;
+namespace Bssd\LaravelAspect\Matcher;
 
 use Ray\Aop\AbstractMatcher;
 use Doctrine\Common\Annotations\AnnotationReader;

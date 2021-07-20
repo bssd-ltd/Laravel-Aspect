@@ -17,12 +17,12 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Interceptor;
+namespace Bssd\LaravelAspect\Interceptor;
 
 use Illuminate\Log\LogManager;
 use Ray\Aop\MethodInterceptor;
 use Ray\Aop\MethodInvocation;
-use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
+use Bssd\LaravelAspect\Annotation\AnnotationReaderTrait;
 
 use function is_null;
 use function microtime;
@@ -43,7 +43,7 @@ class LoggableInterceptor extends AbstractLogger implements MethodInterceptor
      */
     public function invoke(MethodInvocation $invocation)
     {
-        /** @var \Ytake\LaravelAspect\Annotation\Loggable $annotation */
+        /** @var \Bssd\LaravelAspect\Annotation\Loggable $annotation */
         $annotation = $invocation->getMethod()->getAnnotation($this->annotation) ?? new $this->annotation([]);
         $start = microtime(true);
         $result = $invocation->proceed();

@@ -17,12 +17,12 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\PointCut;
+namespace Bssd\LaravelAspect\PointCut;
 
 use Illuminate\Contracts\Container\Container;
 use Ray\Aop\Pointcut;
-use Ytake\LaravelAspect\Annotation\QueryLog;
-use Ytake\LaravelAspect\Interceptor\QueryLogInterceptor;
+use Bssd\LaravelAspect\Annotation\QueryLog;
+use Bssd\LaravelAspect\Interceptor\QueryLogInterceptor;
 
 /**
  * Class QueryLogPointCut

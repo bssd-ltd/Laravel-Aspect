@@ -17,13 +17,13 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\PointCut;
+namespace Bssd\LaravelAspect\PointCut;
 
 use Illuminate\Contracts\Container\Container;
 use Psr\Log\LoggerInterface;
 use Ray\Aop\Pointcut;
-use Ytake\LaravelAspect\Annotation\Loggable;
-use Ytake\LaravelAspect\Interceptor\LoggableInterceptor;
+use Bssd\LaravelAspect\Annotation\Loggable;
+use Bssd\LaravelAspect\Interceptor\LoggableInterceptor;
 
 /**
  * Class LoggablePointCut

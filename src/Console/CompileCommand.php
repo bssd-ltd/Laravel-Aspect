@@ -17,10 +17,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Console;
+namespace Bssd\LaravelAspect\Console;
 
 use Illuminate\Console\Command;
-use Ytake\LaravelAspect\AspectManager;
+use Bssd\LaravelAspect\AspectManager;
 
 /**
  * Class ClearCacheCommand

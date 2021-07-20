@@ -17,7 +17,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Console;
+namespace Bssd\LaravelAspect\Console;
 
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
@@ -48,16 +48,16 @@ class ModulePublishCommand extends Command
 
     /** @var array  package modules */
     protected $modules = [
-        'CacheableModule'      => 'Ytake\LaravelAspect\Modules\CacheableModule',
-        'CacheEvictModule'     => 'Ytake\LaravelAspect\Modules\CacheEvictModule',
-        'CachePutModule'       => 'Ytake\LaravelAspect\Modules\CachePutModule',
-        'TransactionalModule'  => 'Ytake\LaravelAspect\Modules\TransactionalModule',
-        'LoggableModule'       => 'Ytake\LaravelAspect\Modules\LoggableModule',
-        'LogExceptionsModule'  => 'Ytake\LaravelAspect\Modules\LogExceptionsModule',
-        'PostConstructModule'  => 'Ytake\LaravelAspect\Modules\PostConstructModule',
-        'RetryOnFailureModule' => 'Ytake\LaravelAspect\Modules\RetryOnFailureModule',
-        'MessageDrivenModule'  => 'Ytake\LaravelAspect\Modules\MessageDrivenModule',
-        'QueryLogModule'       => 'Ytake\LaravelAspect\Modules\QueryLogModule',
+        'CacheableModule'      => 'Bssd\LaravelAspect\Modules\CacheableModule',
+        'CacheEvictModule'     => 'Bssd\LaravelAspect\Modules\CacheEvictModule',
+        'CachePutModule'       => 'Bssd\LaravelAspect\Modules\CachePutModule',
+        'TransactionalModule'  => 'Bssd\LaravelAspect\Modules\TransactionalModule',
+        'LoggableModule'       => 'Bssd\LaravelAspect\Modules\LoggableModule',
+        'LogExceptionsModule'  => 'Bssd\LaravelAspect\Modules\LogExceptionsModule',
+        'PostConstructModule'  => 'Bssd\LaravelAspect\Modules\PostConstructModule',
+        'RetryOnFailureModule' => 'Bssd\LaravelAspect\Modules\RetryOnFailureModule',
+        'MessageDrivenModule'  => 'Bssd\LaravelAspect\Modules\MessageDrivenModule',
+        'QueryLogModule'       => 'Bssd\LaravelAspect\Modules\QueryLogModule',
     ];
 
     /**

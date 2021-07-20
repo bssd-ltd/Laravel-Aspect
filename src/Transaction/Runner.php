@@ -17,7 +17,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Transaction;
+namespace Bssd\LaravelAspect\Transaction;
 
 use Illuminate\Database\DatabaseManager;
 
@@ -43,13 +43,13 @@ final class Runner
     }
 
     /**
-     * @param DatabaseManager $databaseManager
-     * @param string          $exceptionName
+     * @param  DatabaseManager  $databaseManager
+     * @param  array            $expectedExceptions
      *
      * @return \Closure|mixed
      * @throws \Exception
      */
-    public function __invoke(DatabaseManager $databaseManager, string $exceptionName)
+    public function __invoke(DatabaseManager $databaseManager, array $expectedExceptions)
     {
         $invoke = array_shift($this->invoker);
         if (is_null($invoke)) {
@@ -58,6 +58,6 @@ final class Runner
             };
         }
 
-        return $invoke($databaseManager, $exceptionName, $this);
+        return $invoke($databaseManager, $expectedExceptions, $this);
     }
 }

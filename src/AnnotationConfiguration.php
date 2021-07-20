@@ -17,9 +17,9 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect;
+namespace Bssd\LaravelAspect;
 
-use Ytake\LaravelAspect\Annotation;
+use Bssd\LaravelAspect\Annotation;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 

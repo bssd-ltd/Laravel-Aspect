@@ -17,7 +17,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Interceptor;
+namespace Bssd\LaravelAspect\Interceptor;
 
 use Illuminate\Contracts\Cache\Repository;
 use Ray\Aop\MethodInvocation;
@@ -25,10 +25,10 @@ use Ray\Aop\MethodInterceptor;
 use Illuminate\Cache\CacheManager;
 use Illuminate\Contracts\Cache\Factory;
 use Doctrine\Common\Annotations\Annotation;
-use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
-use Ytake\LaravelAspect\Annotation\Cacheable;
-use Ytake\LaravelAspect\Annotation\CacheEvict;
-use Ytake\LaravelAspect\Annotation\CachePut;
+use Bssd\LaravelAspect\Annotation\AnnotationReaderTrait;
+use Bssd\LaravelAspect\Annotation\Cacheable;
+use Bssd\LaravelAspect\Annotation\CacheEvict;
+use Bssd\LaravelAspect\Annotation\CachePut;
 
 use function in_array;
 use function is_array;

@@ -17,11 +17,11 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Interceptor;
+namespace Bssd\LaravelAspect\Interceptor;
 
 use Psr\Log\LoggerInterface;
 use Ray\Aop\MethodInvocation;
-use Ytake\LaravelAspect\Annotation\LoggableAnnotate;
+use Bssd\LaravelAspect\Annotation\LoggableAnnotate;
 
 use function sprintf;
 

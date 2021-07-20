@@ -17,13 +17,13 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\PointCut;
+namespace Bssd\LaravelAspect\PointCut;
 
 use Ray\Aop\Matcher;
 use Ray\Aop\Pointcut;
 use Illuminate\Contracts\Container\Container;
-use Ytake\LaravelAspect\Annotation\PostConstruct;
-use Ytake\LaravelAspect\Matcher\AnnotationScanMatcher;
+use Bssd\LaravelAspect\Annotation\PostConstruct;
+use Bssd\LaravelAspect\Matcher\AnnotationScanMatcher;
 
 /**
  * Class PostConstructPointCut
