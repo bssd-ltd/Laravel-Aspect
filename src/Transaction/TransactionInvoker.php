@@ -21,7 +21,6 @@ declare(strict_types=1);
 namespace Bssd\LaravelAspect\Transaction;
 
 use Illuminate\Database\DatabaseManager;
-use Illuminate\Database\QueryException;
 
 /**
  * Class TransactionInvoker
@@ -63,6 +62,7 @@ class TransactionInvoker implements Runnable
                     throw $exception;
                 }
             }
+            $database->commit();
             throw $exception;
         }
         return $result;
