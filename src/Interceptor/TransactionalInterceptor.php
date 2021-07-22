@@ -20,14 +20,13 @@ declare(strict_types=1);
 
 namespace Bssd\LaravelAspect\Interceptor;
 
-use Illuminate\Database\DatabaseManager;
-use Illuminate\Database\QueryException;
-use Ray\Aop\MethodInterceptor;
-use Ray\Aop\MethodInvocation;
 use Bssd\LaravelAspect\Annotation\AnnotationReaderTrait;
 use Bssd\LaravelAspect\Transaction\Execute;
 use Bssd\LaravelAspect\Transaction\Runner;
 use Bssd\LaravelAspect\Transaction\TransactionInvoker;
+use Illuminate\Database\DatabaseManager;
+use Ray\Aop\MethodInterceptor;
+use Ray\Aop\MethodInvocation;
 
 use function is_array;
 
@@ -68,7 +67,7 @@ class TransactionalInterceptor implements MethodInterceptor
     private function getExpectedExceptions($annotation)
     {
         $annotation->expect = is_array($annotation->expect) ? $annotation->expect : [$annotation->expect];
-        $result = [QueryException::class];
+        $result = [];
         foreach ($annotation->expect as $expected) {
             $result[] = ltrim($expected, '\\');
         }
