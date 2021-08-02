@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -19,8 +20,8 @@ declare(strict_types=1);
 
 namespace Bssd\LaravelAspect;
 
-use Ray\Aop\WeavedInterface;
 use Bssd\LaravelAspect\Annotation\PostConstruct;
+use Ray\Aop\WeavedInterface;
 
 use function is_array;
 use function unserialize;
@@ -31,7 +32,7 @@ use function unserialize;
 final class AnnotateClass
 {
     /**
-     * @param WeavedInterface $weavedInstance
+     * @param  WeavedInterface  $weavedInstance
      *
      * @return string
      */

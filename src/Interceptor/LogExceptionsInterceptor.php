@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -19,12 +20,11 @@ declare(strict_types=1);
 
 namespace Bssd\LaravelAspect\Interceptor;
 
+use Bssd\LaravelAspect\Annotation\AnnotationReaderTrait;
+use Exception;
 use Illuminate\Log\LogManager;
 use Ray\Aop\MethodInterceptor;
 use Ray\Aop\MethodInvocation;
-use Bssd\LaravelAspect\Annotation\AnnotationReaderTrait;
-
-use function is_null;
 
 /**
  * Class LogExceptionsInterceptor
@@ -34,7 +34,7 @@ class LogExceptionsInterceptor extends AbstractLogger implements MethodIntercept
     use AnnotationReaderTrait;
 
     /**
-     * @param MethodInvocation $invocation
+     * @param  MethodInvocation  $invocation
      *
      * @return object
      * @throws \Exception
@@ -45,17 +45,16 @@ class LogExceptionsInterceptor extends AbstractLogger implements MethodIntercept
         $annotation = $invocation->getMethod()->getAnnotation($this->annotation) ?? new $this->annotation([]);
         try {
             $result = $invocation->proceed();
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             if ($exception instanceof $annotation->expect) {
                 $logFormat = $this->logFormatter($annotation, $invocation);
                 $logger = static::$logger;
                 /** Monolog\Logger */
                 $logFormat['context']['code'] = $exception->getCode();
                 $logFormat['context']['error_message'] = $exception->getMessage();
+                $driver = $annotation->driver ?? env('LOG_CHANNEL', 'stderr');
                 if ($logger instanceof LogManager) {
-                    if (!is_null($annotation->driver)) {
-                        $logger = $logger->driver($annotation->driver);
-                    }
+                    $logger = $logger->driver($driver);
                     $logger->addRecord($logFormat['level'], $logFormat['message'], $logFormat['context']);
                 }
             }

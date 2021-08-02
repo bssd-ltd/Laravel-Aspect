@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -19,8 +20,8 @@ declare(strict_types=1);
 
 namespace Bssd\LaravelAspect\Modules;
 
-use Bssd\LaravelAspect\PointCut\PointCutable;
 use Bssd\LaravelAspect\PointCut\MessageDrivenPointCut;
+use Bssd\LaravelAspect\PointCut\PointCutable;
 
 /**
  * Class MessageDrivenModule

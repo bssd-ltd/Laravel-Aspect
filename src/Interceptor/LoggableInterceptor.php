@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -19,12 +20,11 @@ declare(strict_types=1);
 
 namespace Bssd\LaravelAspect\Interceptor;
 
+use Bssd\LaravelAspect\Annotation\AnnotationReaderTrait;
 use Illuminate\Log\LogManager;
 use Ray\Aop\MethodInterceptor;
 use Ray\Aop\MethodInvocation;
-use Bssd\LaravelAspect\Annotation\AnnotationReaderTrait;
 
-use function is_null;
 use function microtime;
 use function number_format;
 
@@ -36,7 +36,7 @@ class LoggableInterceptor extends AbstractLogger implements MethodInterceptor
     use AnnotationReaderTrait;
 
     /**
-     * @param MethodInvocation $invocation
+     * @param  MethodInvocation  $invocation
      *
      * @return object
      * @throws \Exception
@@ -55,10 +55,9 @@ class LoggableInterceptor extends AbstractLogger implements MethodInterceptor
         }
         $logFormat['context']['time'] = $time;
         /** Monolog\Logger */
+        $driver = $annotation->driver ?? env('LOG_CHANNEL', 'stderr');
         if ($logger instanceof LogManager) {
-            if (!is_null($annotation->driver)) {
-                $logger = $logger->driver($annotation->driver);
-            }
+            $logger = $logger->driver($driver);
             $logger->addRecord($logFormat['level'], $logFormat['message'], $logFormat['context']);
         }
 

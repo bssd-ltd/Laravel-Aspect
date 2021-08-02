@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -19,11 +20,11 @@ declare(strict_types=1);
 
 namespace Bssd\LaravelAspect\PointCut;
 
+use Bssd\LaravelAspect\Annotation\Loggable;
+use Bssd\LaravelAspect\Interceptor\LoggableInterceptor;
 use Illuminate\Contracts\Container\Container;
 use Psr\Log\LoggerInterface;
 use Ray\Aop\Pointcut;
-use Bssd\LaravelAspect\Annotation\Loggable;
-use Bssd\LaravelAspect\Interceptor\LoggableInterceptor;
 
 /**
  * Class LoggablePointCut
@@ -34,7 +35,7 @@ class LoggablePointCut extends CommonPointCut implements PointCutable
     protected $annotation = Loggable::class;
 
     /**
-     * @param Container $app
+     * @param  Container  $app
      *
      * @return \Ray\Aop\Pointcut
      */
