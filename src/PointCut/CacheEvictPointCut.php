@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -19,21 +20,21 @@ declare(strict_types=1);
 
 namespace Bssd\LaravelAspect\PointCut;
 
-use Illuminate\Contracts\Container\Container;
-use Ray\Aop\Pointcut;
 use Bssd\LaravelAspect\Annotation\CacheEvict;
 use Bssd\LaravelAspect\Interceptor\CacheEvictInterceptor;
+use Illuminate\Contracts\Container\Container;
+use Ray\Aop\Pointcut;
 
 /**
  * Class CacheEvictExecution
  */
 class CacheEvictPointCut extends CommonPointCut implements PointCutable
 {
-    /** @var string  */
+    /** @var string */
     protected $annotation = CacheEvict::class;
 
     /**
-     * @param Container $app
+     * @param  Container  $app
      *
      * @return \Ray\Aop\Pointcut
      */

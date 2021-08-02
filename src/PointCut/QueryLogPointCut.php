@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -19,10 +20,10 @@ declare(strict_types=1);
 
 namespace Bssd\LaravelAspect\PointCut;
 
-use Illuminate\Contracts\Container\Container;
-use Ray\Aop\Pointcut;
 use Bssd\LaravelAspect\Annotation\QueryLog;
 use Bssd\LaravelAspect\Interceptor\QueryLogInterceptor;
+use Illuminate\Contracts\Container\Container;
+use Ray\Aop\Pointcut;
 
 /**
  * Class QueryLogPointCut
@@ -33,7 +34,7 @@ class QueryLogPointCut extends CommonPointCut implements PointCutable
     protected $annotation = QueryLog::class;
 
     /**
-     * @param Container $app
+     * @param  Container  $app
      *
      * @return \Ray\Aop\Pointcut
      */

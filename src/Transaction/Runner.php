@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -35,7 +36,7 @@ final class Runner
     /**
      * Runner constructor.
      *
-     * @param array $invoker
+     * @param  array  $invoker
      */
     public function __construct(array $invoker = [])
     {

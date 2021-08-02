@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -19,11 +20,11 @@ declare(strict_types=1);
 
 namespace Bssd\LaravelAspect\PointCut;
 
-use Ray\Aop\Matcher;
-use Ray\Aop\Pointcut;
-use Illuminate\Contracts\Container\Container;
 use Bssd\LaravelAspect\Annotation\PostConstruct;
 use Bssd\LaravelAspect\Matcher\AnnotationScanMatcher;
+use Illuminate\Contracts\Container\Container;
+use Ray\Aop\Matcher;
+use Ray\Aop\Pointcut;
 
 /**
  * Class PostConstructPointCut
@@ -34,7 +35,7 @@ class PostConstructPointCut extends CommonPointCut implements PointCutable
     protected $annotation = PostConstruct::class;
 
     /**
-     * @param Container $app
+     * @param  Container  $app
      *
      * @return \Ray\Aop\Pointcut
      */

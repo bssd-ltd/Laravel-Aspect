@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -19,10 +20,10 @@ declare(strict_types=1);
 
 namespace Bssd\LaravelAspect\PointCut;
 
-use Illuminate\Contracts\Container\Container;
-use Ray\Aop\Pointcut;
 use Bssd\LaravelAspect\Annotation\LogExceptions;
 use Bssd\LaravelAspect\Interceptor\LogExceptionsInterceptor;
+use Illuminate\Contracts\Container\Container;
+use Ray\Aop\Pointcut;
 
 /**
  * Class LogExceptionsPointCut
@@ -33,7 +34,7 @@ class LogExceptionsPointCut extends CommonPointCut implements PointCutable
     protected $annotation = LogExceptions::class;
 
     /**
-     * @param Container $app
+     * @param  Container  $app
      *
      * @return \Ray\Aop\Pointcut
      */

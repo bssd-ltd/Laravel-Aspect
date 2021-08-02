@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -19,8 +20,8 @@ declare(strict_types=1);
 
 namespace Bssd\LaravelAspect\Console;
 
-use Illuminate\Console\Command;
 use Bssd\LaravelAspect\AspectManager;
+use Illuminate\Console\Command;
 
 /**
  * Class ClearCacheCommand
@@ -39,7 +40,7 @@ class CompileCommand extends Command
     /**
      * CompileCommand constructor.
      *
-     * @param AspectManager $aspectManager
+     * @param  AspectManager  $aspectManager
      */
     public function __construct(AspectManager $aspectManager)
     {

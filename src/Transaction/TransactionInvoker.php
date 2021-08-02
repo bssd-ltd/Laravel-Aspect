@@ -20,6 +20,7 @@ declare(strict_types=1);
 
 namespace Bssd\LaravelAspect\Transaction;
 
+use Exception;
 use Illuminate\Database\DatabaseManager;
 
 /**
@@ -55,7 +56,7 @@ class TransactionInvoker implements Runnable
         try {
             $result = $invoker($databaseManager, $expectedExceptions);
             $database->commit();
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             foreach ($expectedExceptions as $expected) {
                 if ($exception instanceof $expected) {
                     $database->rollBack();
