@@ -1,69 +1,7 @@
+
 # Laravel-Aspect
 
-aspect-oriented programming Package for laravel framework
-
-![Build Status](https://github.com/ytake/Laravel-Aspect/workflows/Tests/badge.svg?branch=master)
-[![Coverage Status](http://img.shields.io/coveralls/ytake/Laravel-Aspect/master.svg?style=flat-square)](https://coveralls.io/r/ytake/Laravel-Aspect?branch=master)
-[![Scrutinizer Code Quality](http://img.shields.io/scrutinizer/g/ytake/Laravel-Aspect.svg?style=flat-square)](https://scrutinizer-ci.com/g/ytake/Laravel-Aspect/?branch=master)
-
-[![StyleCI](https://styleci.io/repos/40900709/shield)](https://styleci.io/repos/40900709)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/70dace68-fe04-4039-aeb4-47a64c6acca3/mini.png)](https://insight.sensiolabs.com/projects/70dace68-fe04-4039-aeb4-47a64c6acca3)
-
-[![License](http://img.shields.io/packagist/l/ytake/laravel-aspect.svg?style=flat-square)](https://packagist.org/packages/ytake/laravel-aspect)
-[![Latest Version](http://img.shields.io/packagist/v/ytake/laravel-aspect.svg?style=flat-square)](https://packagist.org/packages/ytake/laravel-aspect)
-[![Total Downloads](http://img.shields.io/packagist/dt/ytake/laravel-aspect.svg?style=flat-square)](https://packagist.org/packages/ytake/laravel-aspect)
-
-This library is heavily inspired by the [jcabi/jcabi-aspects](https://github.com/jcabi/jcabi-aspects).
-
-## usage
-
-### Laravel version Compatibility
-
-Laravel  | Package
-:---------|:----------
-5.0.x    | 1.x
-5.1.x    | 1.x
-5.2.x    | 1.x
-5.3.x    | 1.x
-5.4.x    | 1.x
-5.5.x    | 2.0.*
-5.6.x    | 2.1.*
-5.7.x    | 3.0.*
-6.0.x    | 4.0
-7.x      | 6.0
-8.x      | 7.0
-
-### install
-
-```bash
-$ composer require ytake/laravel-aspect
-```
-
-*Supported Auto-Discovery(^Laravel5.5)*
-
-#### for Laravel5.1, 5.2
-
-[branch](https://github.com/ytake/Laravel-Aspect/tree/master-laravel5-legacy)
-
- ```json
-   "require": {
-"php": ">=5.5.9",
-"laravel/framework": "5.*",
-"ytake/laravel-aspect": "^1.0"
-},
- ```
-
-#### for Laravel5.6
-
-[Laravel-Aspect Supported Laravel5.6](https://github.com/ytake/Laravel-Aspect/blob/master-laravel5.6)
-
- ```json
-   "require": {
-"php": ">=7.1.3",
-"laravel/framework": "^5.7",
-"ytake/laravel-aspect": "^3.0.0"
-},
- ```
+Origin source can be found [here](https://github.com/ytake/Laravel-Aspect)
 
 ### added serviceProvider
 
@@ -397,7 +335,7 @@ you must use the LoggableModule / LogExceptionsModule
 | value | log level (default: \Monolog\Logger::INFO) should Monolog Constants |
 | skipResult | method result output to log |
 | name |log name prefix(default: Loggable) |
-| driver | logger driver or channel name [docs](https://laravel.com/docs/5.6/logging#configuration) |
+| driver | logger driver or channel name - default using **LOG_CHANNEL** (.env settings) |
 
 ```php
 use Bssd\LaravelAspect\Annotation\Loggable;
@@ -405,7 +343,7 @@ use Bssd\LaravelAspect\Annotation\Loggable;
 class AspectLoggable
 {
     /**
-     * @Loggable(driver="stack")
+     * @Loggable
      * @param null $id
      * @return null
      */
@@ -433,7 +371,7 @@ use Bssd\LaravelAspect\Annotation\LogExceptions;
 class AspectLoggable
 {
     /**
-     * @LogExceptions(driver="custom")
+     * @LogExceptions
      * @param null $id
      * @return null
      */
@@ -471,7 +409,7 @@ class AspectQueryLog
     }
 
     /**
-     * @QueryLog(driver="custom")
+     * @QueryLog
      */
     public function multipleDatabaseAppendRecord()
     {
