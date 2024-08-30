@@ -36,6 +36,14 @@ class AspectLogExceptionsTest extends AspectTestCase
         $this->app['files']->deleteDirectory($this->getDir());
     }
 
+    /**
+     * @return string
+     */
+    protected function getDir()
+    {
+        return __DIR__ . '/storage/log';
+    }
+
     public function testShouldBeLogger()
     {
         //$this->log->useFiles($this->getDir() . '/.testing.exceptions.log');
@@ -116,13 +124,5 @@ class AspectLogExceptionsTest extends AspectTestCase
         $aspect->register(CacheEvictModule::class);
         $aspect->register(CacheableModule::class);
         $aspect->weave();
-    }
-
-    /**
-     * @return string
-     */
-    protected function getDir()
-    {
-        return __DIR__ . '/storage/log';
     }
 }
