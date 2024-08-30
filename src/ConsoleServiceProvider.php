@@ -20,11 +20,11 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect;
 
+use Illuminate\Contracts\Support\DeferrableProvider;
+use Illuminate\Support\ServiceProvider;
 use Ytake\LaravelAspect\Console\ClearCacheCommand;
 use Ytake\LaravelAspect\Console\CompileCommand;
 use Ytake\LaravelAspect\Console\ModulePublishCommand;
-use Illuminate\Contracts\Support\DeferrableProvider;
-use Illuminate\Support\ServiceProvider;
 
 /**
  * Class ConsoleServiceProvider

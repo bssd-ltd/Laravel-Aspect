@@ -34,7 +34,7 @@ final class Execute implements Runnable
     /**
      * Execute constructor.
      *
-     * @param  MethodInvocation  $invocation
+     * @param MethodInvocation $invocation
      */
     public function __construct(MethodInvocation $invocation)
     {
@@ -42,17 +42,18 @@ final class Execute implements Runnable
     }
 
     /**
-     * @param  DatabaseManager  $databaseManager
-     * @param  array            $expectedExceptions
-     * @param  callable         $invoker
+     * @param DatabaseManager $databaseManager
+     * @param array $expectedExceptions
+     * @param callable $invoker
      *
      * @return object
      */
     public function __invoke(
         DatabaseManager $databaseManager,
-        array $expectedExceptions,
-        callable $invoker
-    ) {
+        array           $expectedExceptions,
+        callable        $invoker
+    )
+    {
         return $this->invocation->proceed();
     }
 }

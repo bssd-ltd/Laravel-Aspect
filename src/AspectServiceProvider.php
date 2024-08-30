@@ -46,7 +46,7 @@ class AspectServiceProvider extends ServiceProvider
         /**
          * for package configure
          */
-        $configPath = __DIR__.'/config/ytake-laravel-aop.php';
+        $configPath = __DIR__ . '/config/ytake-laravel-aop.php';
         $this->mergeConfigFrom($configPath, 'ytake-laravel-aop');
         $this->publishes([$configPath => config_path('ytake-laravel-aop.php')], 'aspect');
 

@@ -20,14 +20,13 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\Interceptor;
 
-use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
-use Ytake\LaravelAspect\Annotation\QueryLog;
 use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Log\LogManager;
 use Ray\Aop\MethodInterceptor;
 use Ray\Aop\MethodInvocation;
-
+use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
+use Ytake\LaravelAspect\Annotation\QueryLog;
 use function sprintf;
 
 /**
@@ -44,7 +43,7 @@ class QueryLogInterceptor extends AbstractLogger implements MethodInterceptor
     protected $queryLogs = [];
 
     /**
-     * @param  MethodInvocation  $invocation
+     * @param MethodInvocation $invocation
      *
      * @return object
      * @throws \Exception
@@ -80,15 +79,16 @@ class QueryLogInterceptor extends AbstractLogger implements MethodInterceptor
     }
 
     /**
-     * @param  QueryLog          $annotation
-     * @param  MethodInvocation  $invocation
+     * @param QueryLog $annotation
+     * @param MethodInvocation $invocation
      *
      * @return array
      */
     protected function queryLogFormatter(
-        QueryLog $annotation,
+        QueryLog         $annotation,
         MethodInvocation $invocation
-    ): array {
+    ): array
+    {
         return [
             'level' => $annotation->value,
             'message' => sprintf(
@@ -104,7 +104,7 @@ class QueryLogInterceptor extends AbstractLogger implements MethodInterceptor
     }
 
     /**
-     * @param  EventDispatcher  $dispatcher
+     * @param EventDispatcher $dispatcher
      */
     public function setDispatcher(EventDispatcher $dispatcher): void
     {

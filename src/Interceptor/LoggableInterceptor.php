@@ -20,11 +20,10 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\Interceptor;
 
-use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
 use Illuminate\Log\LogManager;
 use Ray\Aop\MethodInterceptor;
 use Ray\Aop\MethodInvocation;
-
+use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
 use function microtime;
 use function number_format;
 
@@ -36,7 +35,7 @@ class LoggableInterceptor extends AbstractLogger implements MethodInterceptor
     use AnnotationReaderTrait;
 
     /**
-     * @param  MethodInvocation  $invocation
+     * @param MethodInvocation $invocation
      *
      * @return object
      * @throws \Exception

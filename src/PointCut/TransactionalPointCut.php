@@ -20,10 +20,10 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\PointCut;
 
-use Ytake\LaravelAspect\Annotation\Transactional;
-use Ytake\LaravelAspect\Interceptor\TransactionalInterceptor;
 use Illuminate\Contracts\Container\Container;
 use Ray\Aop\Pointcut;
+use Ytake\LaravelAspect\Annotation\Transactional;
+use Ytake\LaravelAspect\Interceptor\TransactionalInterceptor;
 
 /**
  * Class TransactionalPointCut
@@ -34,7 +34,7 @@ class TransactionalPointCut extends CommonPointCut implements PointCutable
     protected $annotation = Transactional::class;
 
     /**
-     * @param  Container  $app
+     * @param Container $app
      *
      * @return \Ray\Aop\Pointcut
      */

@@ -42,8 +42,8 @@ class ClearCacheCommand extends Command
     protected $filesystem;
 
     /**
-     * @param  ConfigRepository  $config
-     * @param  Filesystem        $filesystem
+     * @param ConfigRepository $config
+     * @param Filesystem $filesystem
      */
     public function __construct(ConfigRepository $config, Filesystem $filesystem)
     {
@@ -69,11 +69,11 @@ class ClearCacheCommand extends Command
     }
 
     /**
-     * @param  string  $dir
+     * @param string $dir
      */
     protected function removeFiles(string $dir): void
     {
-        $files = $this->filesystem->glob($dir.'/*');
+        $files = $this->filesystem->glob($dir . '/*');
         foreach ($files as $file) {
             $this->filesystem->delete($file);
         }

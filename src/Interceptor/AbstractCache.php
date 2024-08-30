@@ -20,10 +20,6 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\Interceptor;
 
-use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
-use Ytake\LaravelAspect\Annotation\Cacheable;
-use Ytake\LaravelAspect\Annotation\CacheEvict;
-use Ytake\LaravelAspect\Annotation\CachePut;
 use Doctrine\Common\Annotations\Annotation;
 use Illuminate\Cache\CacheManager;
 use Illuminate\Contracts\Cache\Factory;
@@ -31,7 +27,10 @@ use Illuminate\Contracts\Cache\Repository;
 use InvalidArgumentException;
 use Ray\Aop\MethodInterceptor;
 use Ray\Aop\MethodInvocation;
-
+use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
+use Ytake\LaravelAspect\Annotation\Cacheable;
+use Ytake\LaravelAspect\Annotation\CacheEvict;
+use Ytake\LaravelAspect\Annotation\CachePut;
 use function count;
 use function get_class;
 use function in_array;
@@ -54,7 +53,7 @@ abstract class AbstractCache implements MethodInterceptor
     /**
      * set cache instance
      *
-     * @param  Factory  $factory
+     * @param Factory $factory
      */
     public function setCache(Factory $factory): void
     {
@@ -62,8 +61,8 @@ abstract class AbstractCache implements MethodInterceptor
     }
 
     /**
-     * @param  string|array      $name
-     * @param  MethodInvocation  $invocation
+     * @param string|array $name
+     * @param MethodInvocation $invocation
      *
      * @return array
      */
@@ -80,21 +79,22 @@ abstract class AbstractCache implements MethodInterceptor
     }
 
     /**
-     * @param  MethodInvocation                          $invocation
-     * @param  Annotation|Cacheable|CacheEvict|CachePut  $annotation
-     * @param  array                                     $keys
+     * @param MethodInvocation $invocation
+     * @param Annotation|Cacheable|CacheEvict|CachePut $annotation
+     * @param array $keys
      *
      * @return array
      */
     protected function detectCacheKeys(
         MethodInvocation $invocation,
-        Annotation $annotation,
-        array $keys
-    ): array {
+        Annotation       $annotation,
+        array            $keys
+    ): array
+    {
         $arguments = $invocation->getArguments();
         foreach ($invocation->getMethod()->getParameters() as $parameter) {
             // exclude object
-            if (in_array('#'.$parameter->name, $annotation->key)) {
+            if (in_array('#' . $parameter->name, $annotation->key)) {
                 if (isset($arguments[$parameter->getPosition()])) {
                     if (!is_object($arguments[$parameter->getPosition()])) {
                         $keys[] = $arguments[$parameter->getPosition()];
@@ -131,8 +131,8 @@ abstract class AbstractCache implements MethodInterceptor
     }
 
     /**
-     * @param  string  $glue
-     * @param  array   $array
+     * @param string $glue
+     * @param array $array
      *
      * @return string
      */

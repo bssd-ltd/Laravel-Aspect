@@ -20,8 +20,8 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\Console;
 
-use Ytake\LaravelAspect\AspectManager;
 use Illuminate\Console\Command;
+use Ytake\LaravelAspect\AspectManager;
 
 /**
  * Class ClearCacheCommand
@@ -40,7 +40,7 @@ class CompileCommand extends Command
     /**
      * CompileCommand constructor.
      *
-     * @param  AspectManager  $aspectManager
+     * @param AspectManager $aspectManager
      */
     public function __construct(AspectManager $aspectManager)
     {

@@ -20,13 +20,12 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect;
 
-use Ytake\LaravelAspect\Exception\ClassNotFoundException;
-use Ytake\LaravelAspect\Modules\AspectModule;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Filesystem\Filesystem;
 use Ray\Aop\Compiler;
 use Ray\Aop\Weaver;
-
+use Ytake\LaravelAspect\Exception\ClassNotFoundException;
+use Ytake\LaravelAspect\Modules\AspectModule;
 use function class_exists;
 use function count;
 use function serialize;
@@ -65,9 +64,9 @@ class RayAspectKernel implements AspectDriverInterface
     /**
      * RayAspectKernel constructor.
      *
-     * @param  Container   $app
-     * @param  Filesystem  $filesystem
-     * @param  array       $configure
+     * @param Container $app
+     * @param Filesystem $filesystem
+     * @param array $configure
      *
      * @throws ClassNotFoundException
      */
@@ -87,12 +86,12 @@ class RayAspectKernel implements AspectDriverInterface
     protected function makeCompileDir()
     {
         $this->makeDirectories(strval($this->configure['compile_dir']), 0775);
-        $this->forceCompile = (bool) ($this->configure['force_compile'] ?? false);
+        $this->forceCompile = (bool)($this->configure['force_compile'] ?? false);
     }
 
     /**
-     * @param  string  $dir
-     * @param  int     $mode
+     * @param string $dir
+     * @param int $mode
      */
     private function makeDirectories(string $dir, int $mode = 0777)
     {
@@ -131,7 +130,7 @@ class RayAspectKernel implements AspectDriverInterface
     }
 
     /**
-     * @param  string  $module
+     * @param string $module
      *
      * @throws ClassNotFoundException
      */
@@ -162,7 +161,7 @@ class RayAspectKernel implements AspectDriverInterface
                 ->bind($class, $pointcuts);
             $weaved = $this->forceCompile
                 ? $compiler->compile($class, $bind)
-                : (new Weaver($bind, (string) $this->configure['compile_dir']))->weave($class);
+                : (new Weaver($bind, (string)$this->configure['compile_dir']))->weave($class);
             $container->intercept($class, $bind, $weaved);
         }
     }
@@ -173,11 +172,11 @@ class RayAspectKernel implements AspectDriverInterface
      */
     protected function getCompiler(): Compiler
     {
-        return new Compiler((string) $this->configure['compile_dir']);
+        return new Compiler((string)$this->configure['compile_dir']);
     }
 
     /**
-     * @param  Container  $container
+     * @param Container $container
      *
      * @return ContainerInterceptor
      */
@@ -195,7 +194,7 @@ class RayAspectKernel implements AspectDriverInterface
     protected function aspectConfiguration(): array
     {
         $map = [];
-        $file = $this->configure['cache_dir']."/{$this->mapFile}";
+        $file = $this->configure['cache_dir'] . "/{$this->mapFile}";
         if ($this->configure['cache']) {
             if ($this->filesystem->exists($file)) {
                 foreach ($this->modules as $module) {

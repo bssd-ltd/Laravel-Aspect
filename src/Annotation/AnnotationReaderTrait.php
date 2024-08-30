@@ -29,7 +29,7 @@ trait AnnotationReaderTrait
     protected $annotation;
 
     /**
-     * @param  string  $annotation
+     * @param string $annotation
      */
     public function setAnnotation(string $annotation)
     {

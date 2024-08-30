@@ -28,16 +28,16 @@ use Illuminate\Database\DatabaseManager;
 interface Runnable
 {
     /**
-     * @param  DatabaseManager  $databaseManager
-     * @param  array            $expectedExceptions
-     * @param  callable         $invoker
+     * @param DatabaseManager $databaseManager
+     * @param array $expectedExceptions
+     * @param callable $invoker
      *
      * @return mixed
      * @throws \Exception
      */
     public function __invoke(
         DatabaseManager $databaseManager,
-        array $expectedExceptions,
-        callable $invoker
+        array           $expectedExceptions,
+        callable        $invoker
     );
 }

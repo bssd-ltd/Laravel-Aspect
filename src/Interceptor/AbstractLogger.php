@@ -20,10 +20,9 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\Interceptor;
 
-use Ytake\LaravelAspect\Annotation\LoggableAnnotate;
 use Psr\Log\LoggerInterface;
 use Ray\Aop\MethodInvocation;
-
+use Ytake\LaravelAspect\Annotation\LoggableAnnotate;
 use function sprintf;
 
 /**
@@ -37,7 +36,7 @@ abstract class AbstractLogger
     protected $format = "%s:%s.%s";
 
     /**
-     * @param  LoggerInterface  $logger
+     * @param LoggerInterface $logger
      */
     public function setLogger(LoggerInterface $logger): void
     {
@@ -45,8 +44,8 @@ abstract class AbstractLogger
     }
 
     /**
-     * @param  LoggableAnnotate  $annotation
-     * @param  MethodInvocation  $invocation
+     * @param LoggableAnnotate $annotation
+     * @param MethodInvocation $invocation
      *
      * @return array
      * @throws \ReflectionException
@@ -54,7 +53,8 @@ abstract class AbstractLogger
     protected function logFormatter(
         LoggableAnnotate $annotation,
         MethodInvocation $invocation
-    ): array {
+    ): array
+    {
         $context = [];
         $arguments = $invocation->getArguments();
         foreach ($invocation->getMethod()->getParameters() as $parameter) {

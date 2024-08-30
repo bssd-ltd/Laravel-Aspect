@@ -20,10 +20,10 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\PointCut;
 
-use Ytake\LaravelAspect\Annotation\CachePut;
-use Ytake\LaravelAspect\Interceptor\CachePutInterceptor;
 use Illuminate\Contracts\Container\Container;
 use Ray\Aop\Pointcut;
+use Ytake\LaravelAspect\Annotation\CachePut;
+use Ytake\LaravelAspect\Interceptor\CachePutInterceptor;
 
 /**
  * Class CachePutPointCut
@@ -34,7 +34,7 @@ class CachePutPointCut extends CommonPointCut implements PointCutable
     protected $annotation = CachePut::class;
 
     /**
-     * @param  Container  $app
+     * @param Container $app
      *
      * @return \Ray\Aop\Pointcut
      */

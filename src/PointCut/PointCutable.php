@@ -29,7 +29,7 @@ use Ray\Aop\Pointcut;
 interface PointCutable
 {
     /**
-     * @param  Container  $app
+     * @param Container $app
      *
      * @return \Ray\Aop\Pointcut
      */

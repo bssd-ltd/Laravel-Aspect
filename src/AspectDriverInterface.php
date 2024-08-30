@@ -26,7 +26,7 @@ namespace Ytake\LaravelAspect;
 interface AspectDriverInterface
 {
     /**
-     * @param  string|null  $module
+     * @param string|null $module
      *
      * @return void
      */

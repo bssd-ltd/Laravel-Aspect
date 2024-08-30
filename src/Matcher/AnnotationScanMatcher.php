@@ -22,11 +22,8 @@ namespace Ytake\LaravelAspect\Matcher;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Ray\Aop\AbstractMatcher;
-
 use ReflectionClass;
-
 use ReflectionMethod;
-
 use function func_get_args;
 
 /**
@@ -56,7 +53,7 @@ class AnnotationScanMatcher extends AbstractMatcher
     }
 
     /**
-     * @param  \ReflectionClass  $class
+     * @param \ReflectionClass $class
      * @param                    $annotation
      *
      * @return bool
@@ -78,8 +75,8 @@ class AnnotationScanMatcher extends AbstractMatcher
     }
 
     /**
-     * @param  \ReflectionMethod  $method
-     * @param  array              $arguments
+     * @param \ReflectionMethod $method
+     * @param array $arguments
      *
      * @return bool
      * @throws \ReflectionException

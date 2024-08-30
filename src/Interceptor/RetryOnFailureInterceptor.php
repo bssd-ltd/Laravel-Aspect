@@ -20,12 +20,11 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\Interceptor;
 
-use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
-use Ytake\LaravelAspect\Annotation\RetryOnFailure;
 use Exception;
 use Ray\Aop\MethodInterceptor;
 use Ray\Aop\MethodInvocation;
-
+use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
+use Ytake\LaravelAspect\Annotation\RetryOnFailure;
 use function get_class;
 use function ltrim;
 use function sleep;
@@ -41,7 +40,7 @@ final class RetryOnFailureInterceptor implements MethodInterceptor
     private static $attempt = null;
 
     /**
-     * @param  MethodInvocation  $invocation
+     * @param MethodInvocation $invocation
      *
      * @return object
      * @throws \Exception
@@ -82,12 +81,12 @@ final class RetryOnFailureInterceptor implements MethodInterceptor
     }
 
     /**
-     * @param  MethodInvocation  $invocation
+     * @param MethodInvocation $invocation
      *
      * @return string
      */
     protected function keyName(MethodInvocation $invocation): string
     {
-        return $invocation->getMethod()->class."$".$invocation->getMethod()->getName();
+        return $invocation->getMethod()->class . "$" . $invocation->getMethod()->getName();
     }
 }

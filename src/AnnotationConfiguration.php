@@ -20,10 +20,8 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect;
 
-use Ytake\LaravelAspect\Annotation;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
-
 use function array_merge;
 use function count;
 
@@ -55,8 +53,8 @@ class AnnotationConfiguration
     ];
 
     /**
-     * @param  array  $configuration
-     * @param  array  $customAnnotations
+     * @param array $configuration
+     * @param array $customAnnotations
      */
     public function __construct(array $configuration, array $customAnnotations = [])
     {

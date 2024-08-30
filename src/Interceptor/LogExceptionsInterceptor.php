@@ -20,11 +20,11 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\Interceptor;
 
-use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
 use Exception;
 use Illuminate\Log\LogManager;
 use Ray\Aop\MethodInterceptor;
 use Ray\Aop\MethodInvocation;
+use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
 
 /**
  * Class LogExceptionsInterceptor
@@ -34,7 +34,7 @@ class LogExceptionsInterceptor extends AbstractLogger implements MethodIntercept
     use AnnotationReaderTrait;
 
     /**
-     * @param  MethodInvocation  $invocation
+     * @param MethodInvocation $invocation
      *
      * @return object
      * @throws \Exception

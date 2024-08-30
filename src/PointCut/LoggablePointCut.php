@@ -20,11 +20,11 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\PointCut;
 
-use Ytake\LaravelAspect\Annotation\Loggable;
-use Ytake\LaravelAspect\Interceptor\LoggableInterceptor;
 use Illuminate\Contracts\Container\Container;
 use Psr\Log\LoggerInterface;
 use Ray\Aop\Pointcut;
+use Ytake\LaravelAspect\Annotation\Loggable;
+use Ytake\LaravelAspect\Interceptor\LoggableInterceptor;
 
 /**
  * Class LoggablePointCut
@@ -35,7 +35,7 @@ class LoggablePointCut extends CommonPointCut implements PointCutable
     protected $annotation = Loggable::class;
 
     /**
-     * @param  Container  $app
+     * @param Container $app
      *
      * @return \Ray\Aop\Pointcut
      */

@@ -25,7 +25,6 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use ReflectionClass;
 use Symfony\Component\Console\Input\InputArgument;
-
 use function str_replace;
 use function trim;
 
@@ -63,7 +62,7 @@ class ModulePublishCommand extends Command
     ];
 
     /**
-     * @param  Filesystem  $filesystem
+     * @param Filesystem $filesystem
      */
     public function __construct(Filesystem $filesystem)
     {
@@ -93,21 +92,21 @@ class ModulePublishCommand extends Command
                     'DummyModuleClass',
                 ],
                 [
-                    $this->laravel->getNamespace().$this->argument('module_dir'),
+                    $this->laravel->getNamespace() . $this->argument('module_dir'),
                     $className,
-                    $module.' as '.$extendClassName,
+                    $module . ' as ' . $extendClassName,
                     $extendClassName,
                 ],
                 $stub
             );
             $this->makeDirectory($path);
             $this->filesystem->put($path, $source);
-            $this->info($path.' created successfully.');
+            $this->info($path . ' created successfully.');
         }
     }
 
     /**
-     * @param  string  $name
+     * @param string $name
      *
      * @return string
      */
@@ -115,14 +114,14 @@ class ModulePublishCommand extends Command
     {
         $name = str_replace($this->laravel->getNamespace(), '', $name);
 
-        return $this->laravel['path'].'/'.str_replace('\\', '/', $name).'.php';
+        return $this->laravel['path'] . '/' . str_replace('\\', '/', $name) . '.php';
     }
 
     /**
      * Parse the name and format according to the root namespace.
      *
-     * @param  string       $name
-     * @param  string|null  $moduleDirectory
+     * @param string $name
+     * @param string|null $moduleDirectory
      *
      * @return string
      */
@@ -139,7 +138,7 @@ class ModulePublishCommand extends Command
         }
 
         return $this->parseClassName(
-            trim($rootNamespace, '\\').'\\'.$moduleDirectory.'\\'.$name
+            trim($rootNamespace, '\\') . '\\' . $moduleDirectory . '\\' . $name
         );
     }
 
@@ -149,11 +148,11 @@ class ModulePublishCommand extends Command
     protected function stub(): string
     {
         /** module stub file path */
-        return __DIR__.'/stub/ModuleStub.stub';
+        return __DIR__ . '/stub/ModuleStub.stub';
     }
 
     /**
-     * @param  string  $module
+     * @param string $module
      *
      * @return string
      * @throws \ReflectionException
@@ -169,7 +168,7 @@ class ModulePublishCommand extends Command
     /**
      * Build the directory for the class if necessary.
      *
-     * @param  string  $path
+     * @param string $path
      */
     protected function makeDirectory(string $path): void
     {
@@ -191,7 +190,7 @@ class ModulePublishCommand extends Command
     /**
      * added custom aspect module, override package modules
      *
-     * @param  string  $module
+     * @param string $module
      *
      * @return ModulePublishCommand
      */

@@ -36,7 +36,7 @@ class CommonPointCut
     protected $annotation;
 
     /**
-     * @param  MethodInterceptor  $interceptor
+     * @param MethodInterceptor $interceptor
      */
     protected function setInterceptor(MethodInterceptor $interceptor): void
     {

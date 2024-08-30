@@ -36,8 +36,8 @@ final class ContainerInterceptor
     private $annotateClass;
 
     /**
-     * @param  Container      $container
-     * @param  AnnotateClass  $annotateClass
+     * @param Container $container
+     * @param AnnotateClass $annotateClass
      */
     public function __construct(Container $container, AnnotateClass $annotateClass)
     {
@@ -46,9 +46,9 @@ final class ContainerInterceptor
     }
 
     /**
-     * @param  string         $abstract
-     * @param  BindInterface  $bind
-     * @param  string         $className
+     * @param string $abstract
+     * @param BindInterface $bind
+     * @param string $className
      *
      * @return bool
      */
@@ -78,8 +78,8 @@ final class ContainerInterceptor
     }
 
     /**
-     * @param  string  $class
-     * @param  string  $compiledClass
+     * @param string $class
+     * @param string $compiledClass
      */
     private function resolveContextualBindings(string $class, string $compiledClass): void
     {

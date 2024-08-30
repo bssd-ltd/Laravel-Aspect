@@ -34,7 +34,7 @@ class TransactionInvoker implements Runnable
     /**
      * TransactionInvoker constructor.
      *
-     * @param  string|null  $connection
+     * @param string|null $connection
      */
     public function __construct($connection)
     {
@@ -42,9 +42,9 @@ class TransactionInvoker implements Runnable
     }
 
     /**
-     * @param  DatabaseManager  $databaseManager
-     * @param  array            $expectedExceptions
-     * @param  callable         $invoker
+     * @param DatabaseManager $databaseManager
+     * @param array $expectedExceptions
+     * @param callable $invoker
      *
      * @return mixed
      * @throws \Throwable

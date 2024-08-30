@@ -53,7 +53,7 @@ class AspectManager extends Manager
     }
 
     /**
-     * @param  string  $driver
+     * @param string $driver
      *
      * @return string[]
      */

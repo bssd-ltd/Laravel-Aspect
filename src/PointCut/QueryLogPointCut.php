@@ -20,10 +20,10 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\PointCut;
 
-use Ytake\LaravelAspect\Annotation\QueryLog;
-use Ytake\LaravelAspect\Interceptor\QueryLogInterceptor;
 use Illuminate\Contracts\Container\Container;
 use Ray\Aop\Pointcut;
+use Ytake\LaravelAspect\Annotation\QueryLog;
+use Ytake\LaravelAspect\Interceptor\QueryLogInterceptor;
 
 /**
  * Class QueryLogPointCut
@@ -34,7 +34,7 @@ class QueryLogPointCut extends CommonPointCut implements PointCutable
     protected $annotation = QueryLog::class;
 
     /**
-     * @param  Container  $app
+     * @param Container $app
      *
      * @return \Ray\Aop\Pointcut
      */

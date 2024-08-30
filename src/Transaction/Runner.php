@@ -21,7 +21,6 @@ declare(strict_types=1);
 namespace Ytake\LaravelAspect\Transaction;
 
 use Illuminate\Database\DatabaseManager;
-
 use function array_shift;
 use function is_null;
 
@@ -36,7 +35,7 @@ final class Runner
     /**
      * Runner constructor.
      *
-     * @param  array  $invoker
+     * @param array $invoker
      */
     public function __construct(array $invoker = [])
     {
@@ -44,8 +43,8 @@ final class Runner
     }
 
     /**
-     * @param  DatabaseManager  $databaseManager
-     * @param  array            $expectedExceptions
+     * @param DatabaseManager $databaseManager
+     * @param array $expectedExceptions
      *
      * @return \Closure|mixed
      * @throws \Exception
