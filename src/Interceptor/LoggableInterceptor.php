@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -56,10 +57,9 @@ class LoggableInterceptor extends AbstractLogger implements MethodInterceptor
         }
         $logFormat['context']['time'] = $time;
         /** Monolog\Logger */
+        $driver = $annotation->driver ?? env('LOG_CHANNEL', 'stderr');
         if ($logger instanceof LogManager) {
-            if (!is_null($annotation->driver)) {
-                $logger = $logger->driver($annotation->driver);
-            }
+            $logger = $logger->driver($driver);
             $logger->addRecord($logFormat['level'], $logFormat['message'], $logFormat['context']);
         }
 

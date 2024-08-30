@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -59,8 +60,18 @@ class TransactionalInterceptor implements MethodInterceptor
         }
         $processes[] = new Execute($invocation);
         $runner = new Runner($processes);
+        return $runner(static::$databaseManager, $this->getExpectedExceptions($annotation));
+    }
 
-        return $runner(static::$databaseManager, ltrim($annotation->expect, '\\'));
+
+    private function getExpectedExceptions($annotation)
+    {
+        $annotation->expect = is_array($annotation->expect) ? $annotation->expect : [$annotation->expect];
+        $result = [];
+        foreach ($annotation->expect as $expected) {
+            $result[] = ltrim($expected, '\\');
+        }
+        return $result;
     }
 
     /**

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -32,6 +33,7 @@ class CacheableInterceptor extends AbstractCache
 {
     /**
      * @param MethodInvocation $invocation
+     *
      * @return mixed
      * @throws InvalidArgumentException
      */

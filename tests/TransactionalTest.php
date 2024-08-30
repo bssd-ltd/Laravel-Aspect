@@ -93,6 +93,13 @@ class TransactionalTest extends AspectTestCase
         $this->resolveManager();
     }
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->manager = new AspectManager($this->app);
+        $this->resolveManager();
+    }
+
     /**
      *
      */

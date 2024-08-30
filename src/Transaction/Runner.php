@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -50,7 +51,7 @@ final class Runner
      * @return Closure|mixed
      * @throws Exception
      */
-    public function __invoke(DatabaseManager $databaseManager, string $exceptionName)
+    public function __invoke(DatabaseManager $databaseManager, array $expectedExceptions)
     {
         $invoke = array_shift($this->invoker);
         if (is_null($invoke)) {
@@ -59,6 +60,6 @@ final class Runner
             };
         }
 
-        return $invoke($databaseManager, $exceptionName, $this);
+        return $invoke($databaseManager, $expectedExceptions, $this);
     }
 }

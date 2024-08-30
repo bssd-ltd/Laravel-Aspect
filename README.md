@@ -1,5 +1,5 @@
+
 # Laravel-Aspect
-aspect-oriented programming Package for laravel framework
 
 ![Build Status](https://github.com/ytake/Laravel-Aspect/workflows/Tests/badge.svg?branch=master)
 [![StyleCI](https://styleci.io/repos/40900709/shield)](https://styleci.io/repos/40900709)
@@ -76,6 +76,7 @@ $app->register(\Ytake\LaravelAspect\ConsoleServiceProvider::class);
 ```bash
 $ php artisan ytake:aspect-module-publish
 ```
+
 more command options [--help]
 
 ### publish configure
@@ -92,13 +93,13 @@ $ php artisan vendor:publish
 $ php artisan vendor:publish --tag=aspect
 ```
 
-* use provider 
+* use provider
 
 ```bash
 $ php artisan vendor:publish --provider="Ytake\LaravelAspect\AspectServiceProvider"
 ```
 
-### register aspect module 
+### register aspect module
 
 config/ytake-laravel-aop.php
 
@@ -149,11 +150,13 @@ class SampleService
 ```
 
 *notice*
- - Must use a service container
- - Classes must be non-final
- - Methods must be public
- 
+
+- Must use a service container
+- Classes must be non-final
+- Methods must be public
+
 ### for Lumen
+
 override `Ytake\LaravelAspect\AspectServiceProvider`
 
 ```php
@@ -186,7 +189,7 @@ final class AspectServiceProvider extends AspectProvider
 ```
 
 bootstrap/app.php
- 
+
 ```php
 $app->register(App\Providers\AspectServiceProvider::class);
 
@@ -210,6 +213,7 @@ $ php artisan ytake:aspect-compile
 ## Annotations
 
 ### @Transactional
+
 for database transaction(illuminate/database)
 
 you must use the TransactionalModule
@@ -234,6 +238,7 @@ public function save(array $params)
 ```
 
 #### Multiple Transaction
+
 ```php
 use Ytake\LaravelAspect\Annotation\Transactional;
 
@@ -247,7 +252,37 @@ public function save(array $params)
 }
 ```
 
+#### Exception Rollback
+
+```php
+use Ytake\LaravelAspect\Annotation\Transactional;
+
+/**
+ * @Transactional(expect="\QueryException")
+ */
+public function save(array $params)
+{
+    $this->eloquent->save($params);
+    $this->query->save($params);
+}
+```
+
+#### Multiple Exception Rollback
+```php
+use Ytake\LaravelAspect\Annotation\Transactional;
+
+/**
+ * @Transactional(expect={"\QueryException", "\RuntimeException"})
+ */
+public function save(array $params)
+{
+    $this->eloquent->save($params);
+    $this->query->save($params);
+}
+```
+
 ### @Cacheable
+
 for cache(illuminate/cache)
 
 you must use the CacheableModule
@@ -279,6 +314,7 @@ public function namedMultipleKey($id, $value)
 ```
 
 ### @CacheEvict
+
 for cache(illuminate/cache) / remove cache
 
 you must use the CacheEvictModule
@@ -307,6 +343,7 @@ public function removeCache()
 ```
 
 ### @CachePut
+
 for cache(illuminate/cache) / cache put
 
 you must use the CachePutModule
@@ -346,7 +383,7 @@ you must use the LoggableModule / LogExceptionsModule
 | value | log level (default: \Monolog\Logger::INFO) should Monolog Constants |
 | skipResult | method result output to log |
 | name |log name prefix(default: Loggable) |
-| driver | logger driver or channel name [docs](https://laravel.com/docs/5.6/logging#configuration) |
+| driver | logger driver or channel name - default using **LOG_CHANNEL** (.env settings) |
 
 ```php
 use Ytake\LaravelAspect\Annotation\Loggable;
@@ -354,7 +391,7 @@ use Ytake\LaravelAspect\Annotation\Loggable;
 class AspectLoggable
 {
     /**
-     * @Loggable(driver="stack")
+     * @Loggable
      * @param null $id
      * @return null
      */
@@ -373,6 +410,7 @@ sample)
 ```
 
 #### About @LogExceptions
+
 **Also, take a look at @Loggable. This annotation does the same, but also logs non-exceptional situations.**
 
 ```php
@@ -381,7 +419,7 @@ use Ytake\LaravelAspect\Annotation\LogExceptions;
 class AspectLoggable
 {
     /**
-     * @LogExceptions(driver="custom")
+     * @LogExceptions
      * @param null $id
      * @return null
      */
@@ -419,7 +457,7 @@ class AspectQueryLog
     }
 
     /**
-     * @QueryLog(driver="custom")
+     * @QueryLog
      */
     public function multipleDatabaseAppendRecord()
     {
@@ -542,13 +580,14 @@ class AspectMessageDriven
 
 #### LazyQueue
 
-Handle Class *Ytake\LaravelAspect\Queue\LazyMessage*  
+Handle Class *Ytake\LaravelAspect\Queue\LazyMessage*
 
 #### EagerQueue
 
-Handle Class *Ytake\LaravelAspect\Queue\EagerMessage*  
+Handle Class *Ytake\LaravelAspect\Queue\EagerMessage*
 
-### Ignore Annotations 
+### Ignore Annotations
+
 use config/ytake-laravel-aspect.php file
 
 default: LaravelCollective/annotations
@@ -572,7 +611,7 @@ default: LaravelCollective/annotations
     ],
 ```
 
-### Append Custom Annotations 
+### Append Custom Annotations
 
 ```php
     'annotation' => [
@@ -598,8 +637,10 @@ default: LaravelCollective/annotations
 ```
 
 ## for testing
+
 use none driver
 
 ```xml
+
 <env name="ASPECT_DRIVER" value="none"/>
 ```

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -46,6 +47,7 @@ abstract class AbstractLogger
     /**
      * @param LoggableAnnotate $annotation
      * @param MethodInvocation $invocation
+     *
      * @return array
      * @throws ReflectionException
      */

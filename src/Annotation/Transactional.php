@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -20,9 +21,11 @@ declare(strict_types=1);
 namespace Ytake\LaravelAspect\Annotation;
 
 use Doctrine\Common\Annotations\Annotation;
+use Illuminate\Database\QueryException;
 
 /**
  * Class Transactional
+ *
  * @Annotation
  * @Target("METHOD")
  */

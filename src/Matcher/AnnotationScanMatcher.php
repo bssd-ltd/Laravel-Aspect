@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -55,6 +56,8 @@ class AnnotationScanMatcher extends AbstractMatcher
     /**
      * @param ReflectionClass $class
      * @param                  $annotation
+     * @param \ReflectionClass $class
+     * @param                    $annotation
      *
      * @return bool
      */
@@ -76,6 +79,7 @@ class AnnotationScanMatcher extends AbstractMatcher
 
     /**
      * @param ReflectionMethod $method
+     * @param \ReflectionMethod $method
      * @param array $arguments
      *
      * @return bool
