@@ -2,7 +2,7 @@
 
 namespace __Test;
 
-use Bssd\LaravelAspect\Annotation\RetryOnFailure;
+use Ytake\LaravelAspect\Annotation\RetryOnFailure;
 
 /**
  * Class AspectRetryOnFailure

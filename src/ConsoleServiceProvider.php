@@ -18,11 +18,11 @@ declare(strict_types=1);
  *
  */
 
-namespace Bssd\LaravelAspect;
+namespace Ytake\LaravelAspect;
 
-use Bssd\LaravelAspect\Console\ClearCacheCommand;
-use Bssd\LaravelAspect\Console\CompileCommand;
-use Bssd\LaravelAspect\Console\ModulePublishCommand;
+use Ytake\LaravelAspect\Console\ClearCacheCommand;
+use Ytake\LaravelAspect\Console\CompileCommand;
+use Ytake\LaravelAspect\Console\ModulePublishCommand;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 

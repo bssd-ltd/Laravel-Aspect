@@ -18,10 +18,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Bssd\LaravelAspect\PointCut;
+namespace Ytake\LaravelAspect\PointCut;
 
-use Bssd\LaravelAspect\Annotation\Transactional;
-use Bssd\LaravelAspect\Interceptor\TransactionalInterceptor;
+use Ytake\LaravelAspect\Annotation\Transactional;
+use Ytake\LaravelAspect\Interceptor\TransactionalInterceptor;
 use Illuminate\Contracts\Container\Container;
 use Ray\Aop\Pointcut;
 

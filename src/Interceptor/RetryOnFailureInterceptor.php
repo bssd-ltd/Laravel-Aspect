@@ -18,10 +18,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Bssd\LaravelAspect\Interceptor;
+namespace Ytake\LaravelAspect\Interceptor;
 
-use Bssd\LaravelAspect\Annotation\AnnotationReaderTrait;
-use Bssd\LaravelAspect\Annotation\RetryOnFailure;
+use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
+use Ytake\LaravelAspect\Annotation\RetryOnFailure;
 use Exception;
 use Ray\Aop\MethodInterceptor;
 use Ray\Aop\MethodInvocation;

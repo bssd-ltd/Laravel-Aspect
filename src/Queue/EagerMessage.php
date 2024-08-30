@@ -18,7 +18,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Bssd\LaravelAspect\Queue;
+namespace Ytake\LaravelAspect\Queue;
 
 use Ray\Aop\MethodInvocation;
 

@@ -18,10 +18,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Bssd\LaravelAspect\Modules;
+namespace Ytake\LaravelAspect\Modules;
 
-use Bssd\LaravelAspect\PointCut\CacheablePointCut;
-use Bssd\LaravelAspect\PointCut\PointCutable;
+use Ytake\LaravelAspect\PointCut\CacheablePointCut;
+use Ytake\LaravelAspect\PointCut\PointCutable;
 
 /**
  * Class CacheableModule

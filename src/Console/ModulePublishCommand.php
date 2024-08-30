@@ -18,7 +18,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Bssd\LaravelAspect\Console;
+namespace Ytake\LaravelAspect\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;

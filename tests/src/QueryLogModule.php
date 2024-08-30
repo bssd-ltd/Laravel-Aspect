@@ -2,7 +2,7 @@
 
 namespace __Test;
 
-use Bssd\LaravelAspect\Modules\QueryLogModule as QueryLog;
+use Ytake\LaravelAspect\Modules\QueryLogModule as QueryLog;
 
 class QueryLogModule extends QueryLog
 {

@@ -18,9 +18,9 @@ declare(strict_types=1);
  *
  */
 
-namespace Bssd\LaravelAspect\Console;
+namespace Ytake\LaravelAspect\Console;
 
-use Bssd\LaravelAspect\AspectManager;
+use Ytake\LaravelAspect\AspectManager;
 use Illuminate\Console\Command;
 
 /**

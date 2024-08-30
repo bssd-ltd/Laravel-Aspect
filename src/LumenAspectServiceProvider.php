@@ -18,9 +18,9 @@ declare(strict_types=1);
  *
  */
 
-namespace Bssd\LaravelAspect;
+namespace Ytake\LaravelAspect;
 
-use Bssd\LaravelAspect\AspectServiceProvider as AspectProvider;
+use Ytake\LaravelAspect\AspectServiceProvider as AspectProvider;
 
 /**
  * Class LumenAspectServiceProvider

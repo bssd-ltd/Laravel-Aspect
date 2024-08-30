@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Bus\Dispatcher;
-use Bssd\LaravelAspect\Annotation\MessageDriven;
-use Bssd\LaravelAspect\Interceptor\MessageDrivenInterceptor;
+use Ytake\LaravelAspect\Annotation\MessageDriven;
+use Ytake\LaravelAspect\Interceptor\MessageDrivenInterceptor;
 
 final class MessageDrivenInterceptorTest extends \AspectTestCase
 {
