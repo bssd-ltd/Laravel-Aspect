@@ -28,9 +28,9 @@ use Doctrine\Common\Annotations\Annotation;
  */
 class Transactional extends Annotation
 {
-    /** @var null|string|array $value  database connection names */
+    /** @var null|string|array $value database connection names */
     public $value = null;
 
-    /** @var string  */
+    /** @var string */
     public $expect = 'Illuminate\Database\QueryException';
 }

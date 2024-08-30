@@ -1,35 +1,31 @@
 <?php
 
+use __Test\AspectLoggable;
+use __Test\CacheableModule;
+use __Test\CacheEvictModule;
+use __Test\LoggableModule;
+use Illuminate\Filesystem\Filesystem;
+use Ytake\LaravelAspect\AspectManager;
+use Ytake\LaravelAspect\RayAspectKernel;
+
 /**
  * Class AspectLoggableTest
  */
-class AspectLoggableTest extends \AspectTestCase
+class AspectLoggableTest extends AspectTestCase
 {
-    /** @var \Ytake\LaravelAspect\AspectManager $manager */
+    /** @var AspectManager $manager */
     protected $manager;
 
     /** @var Illuminate\Log\Writer */
     protected $log;
 
-    /** @var \Illuminate\Filesystem\Filesystem */
+    /** @var Filesystem */
     protected $file;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
-        $this->resolveManager();
-        $this->log = $this->app['Psr\Log\LoggerInterface'];
-        $this->file = $this->app['files'];
-        if (!$this->app['files']->exists($this->logDir())) {
-            $this->app['files']->makeDirectory($this->logDir());
-        }
-    }
 
     public function testDefaultLogger()
     {
-        /** @var \__Test\AspectLoggable $cache */
-        $cache = $this->app->make(\__Test\AspectLoggable::class);
+        /** @var AspectLoggable $cache */
+        $cache = $this->app->make(AspectLoggable::class);
         $cache->normalLog(1);
         $put = $this->app['files']->get($this->logDir() . '/.testing.log');
         $this->assertStringContainsString('Loggable:__Test\AspectLoggable.normalLog', $put);
@@ -38,8 +34,8 @@ class AspectLoggableTest extends \AspectTestCase
 
     public function testSkipResultLogger()
     {
-        /** @var \__Test\AspectLoggable $cache */
-        $cache = $this->app->make(\__Test\AspectLoggable::class);
+        /** @var AspectLoggable $cache */
+        $cache = $this->app->make(AspectLoggable::class);
         $cache->skipResultLog(1);
         $put = $this->app['files']->get($this->logDir() . '/.testing.log');
         $this->assertStringContainsString('Loggable:__Test\AspectLoggable.skipResultLog', $put);
@@ -52,16 +48,28 @@ class AspectLoggableTest extends \AspectTestCase
         parent::tearDown();
     }
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->manager = new AspectManager($this->app);
+        $this->resolveManager();
+        $this->log = $this->app['Psr\Log\LoggerInterface'];
+        $this->file = $this->app['files'];
+        if (!$this->app['files']->exists($this->logDir())) {
+            $this->app['files']->makeDirectory($this->logDir());
+        }
+    }
+
     /**
      *
      */
     protected function resolveManager()
     {
-        /** @var \Ytake\LaravelAspect\RayAspectKernel $aspect */
+        /** @var RayAspectKernel $aspect */
         $aspect = $this->manager->driver('ray');
-        $aspect->register(\__Test\LoggableModule::class);
-        $aspect->register(\__Test\CacheEvictModule::class);
-        $aspect->register(\__Test\CacheableModule::class);
+        $aspect->register(LoggableModule::class);
+        $aspect->register(CacheEvictModule::class);
+        $aspect->register(CacheableModule::class);
         $aspect->weave();
     }
 }

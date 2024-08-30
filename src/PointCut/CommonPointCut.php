@@ -20,8 +20,8 @@ declare(strict_types=1);
 namespace Ytake\LaravelAspect\PointCut;
 
 use Ray\Aop\Matcher;
-use Ray\Aop\Pointcut;
 use Ray\Aop\MethodInterceptor;
+use Ray\Aop\Pointcut;
 
 /**
  * Class CommonPointCut

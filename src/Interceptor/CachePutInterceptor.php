@@ -20,7 +20,7 @@ declare(strict_types=1);
 namespace Ytake\LaravelAspect\Interceptor;
 
 use Ray\Aop\MethodInvocation;
-
+use Ray\Aop\ReflectiveMethodInvocation;
 use function is_array;
 
 /**
@@ -29,7 +29,7 @@ use function is_array;
 class CachePutInterceptor extends AbstractCache
 {
     /**
-     * @param MethodInvocation|\Ray\Aop\ReflectiveMethodInvocation $invocation
+     * @param MethodInvocation|ReflectiveMethodInvocation $invocation
      *
      * @return mixed
      */

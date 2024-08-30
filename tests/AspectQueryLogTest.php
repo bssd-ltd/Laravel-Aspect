@@ -1,32 +1,26 @@
 <?php
 
 use __Test\AspectQueryLog;
+use __Test\LoggableModule;
+use __Test\QueryLogModule;
+use __Test\TransactionalModule;
+use Illuminate\Filesystem\Filesystem;
+use Ytake\LaravelAspect\AspectManager;
+use Ytake\LaravelAspect\RayAspectKernel;
 
 /**
  * Class AspectQueryLogTest
  */
-class AspectQueryLogTest extends \AspectTestCase
+class AspectQueryLogTest extends AspectTestCase
 {
-    /** @var \Ytake\LaravelAspect\AspectManager $manager */
+    /** @var AspectManager $manager */
     protected $manager;
 
     /** @var Illuminate\Log\Writer */
     protected $log;
 
-    /** @var \Illuminate\Filesystem\Filesystem */
+    /** @var Filesystem */
     protected $file;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
-        $this->resolveManager();
-        $this->log = $this->app['Psr\Log\LoggerInterface'];
-        $this->file = $this->app['files'];
-        if (!$this->app['files']->exists($this->logDir())) {
-            $this->app['files']->makeDirectory($this->logDir());
-        }
-    }
 
     public function testDefaultLogger()
     {
@@ -50,7 +44,7 @@ class AspectQueryLogTest extends \AspectTestCase
 
     public function testExceptionalDatabaseLogger()
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         /** @var AspectQueryLog $concrete */
         $concrete = $this->app->make(AspectQueryLog::class);
         $concrete->appendRecord(['test' => 'testing']);
@@ -62,16 +56,28 @@ class AspectQueryLogTest extends \AspectTestCase
         parent::tearDown();
     }
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->manager = new AspectManager($this->app);
+        $this->resolveManager();
+        $this->log = $this->app['Psr\Log\LoggerInterface'];
+        $this->file = $this->app['files'];
+        if (!$this->app['files']->exists($this->logDir())) {
+            $this->app['files']->makeDirectory($this->logDir());
+        }
+    }
+
     /**
      *
      */
     protected function resolveManager()
     {
-        /** @var \Ytake\LaravelAspect\RayAspectKernel $aspect */
+        /** @var RayAspectKernel $aspect */
         $aspect = $this->manager->driver('ray');
-        $aspect->register(\__Test\LoggableModule::class);
-        $aspect->register(\__Test\QueryLogModule::class);
-        $aspect->register(\__Test\TransactionalModule::class);
+        $aspect->register(LoggableModule::class);
+        $aspect->register(QueryLogModule::class);
+        $aspect->register(TransactionalModule::class);
         $aspect->weave();
     }
 }

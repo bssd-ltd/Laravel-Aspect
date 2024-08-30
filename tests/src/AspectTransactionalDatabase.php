@@ -5,9 +5,11 @@
 
 namespace __Test;
 
-use Illuminate\Database\QueryException;
-use Ytake\LaravelAspect\Annotation\Transactional;
+use Exception;
 use Illuminate\Database\ConnectionResolverInterface;
+use Illuminate\Database\QueryException;
+use LogicException;
+use Ytake\LaravelAspect\Annotation\Transactional;
 
 /**
  * Class AspectTransactionalDatabase
@@ -44,7 +46,7 @@ class AspectTransactionalDatabase
     {
         $this->db->connection()->statement('CREATE TABLE tests (test varchar(255) NOT NULL)');
         $this->db->connection()->table("tests")->insert(['test' => 'testing']);
-        throw new QueryException("tests", "SELECT date('now')", [], new \Exception);
+        throw new QueryException("tests", "SELECT date('now')", [], new Exception);
     }
 
     /**
@@ -54,7 +56,7 @@ class AspectTransactionalDatabase
     {
         $this->db->connection()->statement('CREATE TABLE tests (test varchar(255) NOT NULL)');
         $this->db->connection()->table("tests")->insert(['test' => 'testing']);
-        throw new \LogicException;
+        throw new LogicException;
     }
 
     /**
@@ -79,7 +81,7 @@ class AspectTransactionalDatabase
         $this->db->connection('testing_second')->statement('CREATE TABLE tests (test varchar(255) NOT NULL)');
         $this->db->connection()->table("tests")->insert(['test' => 'testing']);
         $this->db->connection('testing_second')->table("tests")->insert(['test' => 'testing second']);
-        throw new QueryException("test", "SELECT date('now')", [], new \Exception);
+        throw new QueryException("test", "SELECT date('now')", [], new Exception);
     }
 
     /**

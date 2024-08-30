@@ -3,25 +3,25 @@ return [
     'default' => 'sync',
 
     'connections' => [
-        'sync'     => [
+        'sync' => [
             'driver' => 'sync',
         ],
         'database' => [
-            'driver'      => 'database',
-            'table'       => 'jobs',
-            'queue'       => 'default',
+            'driver' => 'database',
+            'table' => 'jobs',
+            'queue' => 'default',
             'retry_after' => 90,
         ],
-        'redis'    => [
-            'driver'      => 'redis',
-            'connection'  => 'default',
-            'queue'       => 'default',
+        'redis' => [
+            'driver' => 'redis',
+            'connection' => 'default',
+            'queue' => 'default',
             'retry_after' => 90,
         ],
     ],
 
     'failed' => [
         'database' => 'mysql',
-        'table'    => 'failed_jobs',
+        'table' => 'failed_jobs',
     ],
 ];

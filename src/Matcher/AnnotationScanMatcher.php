@@ -19,9 +19,11 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\Matcher;
 
-use Ray\Aop\AbstractMatcher;
 use Doctrine\Common\Annotations\AnnotationReader;
-
+use Ray\Aop\AbstractMatcher;
+use ReflectionClass;
+use ReflectionException;
+use ReflectionMethod;
 use function func_get_args;
 
 /**
@@ -45,21 +47,21 @@ class AnnotationScanMatcher extends AbstractMatcher
     /**
      * {@inheritdoc}
      */
-    public function matchesClass(\ReflectionClass $class, array $arguments)
+    public function matchesClass(ReflectionClass $class, array $arguments)
     {
         return $this->has($class, $arguments[0]);
     }
 
     /**
-     * @param \ReflectionClass $class
+     * @param ReflectionClass $class
      * @param                  $annotation
      *
      * @return bool
      */
-    private function has(\ReflectionClass $class, $annotation): bool
+    private function has(ReflectionClass $class, $annotation): bool
     {
         $count = 0;
-        foreach ($class->getMethods(\ReflectionMethod::IS_PUBLIC) as $reflectionMethod) {
+        foreach ($class->getMethods(ReflectionMethod::IS_PUBLIC) as $reflectionMethod) {
             $match = $this->reader->getMethodAnnotation($reflectionMethod, $annotation);
             if ($match) {
                 $count++;
@@ -73,15 +75,15 @@ class AnnotationScanMatcher extends AbstractMatcher
     }
 
     /**
-     * @param \ReflectionMethod $method
-     * @param array             $arguments
+     * @param ReflectionMethod $method
+     * @param array $arguments
      *
      * @return bool
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
-    public function matchesMethod(\ReflectionMethod $method, array $arguments): bool
+    public function matchesMethod(ReflectionMethod $method, array $arguments): bool
     {
-        $class = new \ReflectionClass($method->class);
+        $class = new ReflectionClass($method->class);
 
         return $this->has($class, $arguments[0]);
     }

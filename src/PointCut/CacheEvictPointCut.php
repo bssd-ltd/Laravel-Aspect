@@ -29,13 +29,13 @@ use Ytake\LaravelAspect\Interceptor\CacheEvictInterceptor;
  */
 class CacheEvictPointCut extends CommonPointCut implements PointCutable
 {
-    /** @var string  */
+    /** @var string */
     protected $annotation = CacheEvict::class;
 
     /**
      * @param Container $app
      *
-     * @return \Ray\Aop\Pointcut
+     * @return Pointcut
      */
     public function configure(Container $app): Pointcut
     {

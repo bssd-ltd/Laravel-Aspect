@@ -16,16 +16,18 @@ declare(strict_types=1);
  * Copyright (c) 2015-2020 Yuuki Takezawa
  *
  */
+
 namespace Ytake\LaravelAspect\Interceptor;
 
-use Ray\Aop\MethodInvocation;
-use Ray\Aop\MethodInterceptor;
+use Exception;
 use Illuminate\Contracts\Bus\Dispatcher;
-use Ytake\LaravelAspect\Queue\LazyMessage;
-use Ytake\LaravelAspect\Queue\EagerMessage;
+use Ray\Aop\MethodInterceptor;
+use Ray\Aop\MethodInvocation;
+use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
 use Ytake\LaravelAspect\Annotation\LazyQueue;
 use Ytake\LaravelAspect\Annotation\MessageDriven;
-use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
+use Ytake\LaravelAspect\Queue\EagerMessage;
+use Ytake\LaravelAspect\Queue\LazyMessage;
 
 /**
  * Class MessageDrivenInterceptor
@@ -41,7 +43,7 @@ class MessageDrivenInterceptor implements MethodInterceptor
      * @param MethodInvocation $invocation
      *
      * @return object
-     * @throws \Exception
+     * @throws Exception
      */
     public function invoke(MethodInvocation $invocation)
     {

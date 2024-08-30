@@ -21,8 +21,8 @@ namespace Ytake\LaravelAspect\Interceptor;
 
 use Psr\Log\LoggerInterface;
 use Ray\Aop\MethodInvocation;
+use ReflectionException;
 use Ytake\LaravelAspect\Annotation\LoggableAnnotate;
-
 use function sprintf;
 
 /**
@@ -30,32 +30,40 @@ use function sprintf;
  */
 abstract class AbstractLogger
 {
+    /** @var LoggerInterface */
+    protected static $logger;
     /** @var string */
     protected $format = "%s:%s.%s";
 
-    /** @var LoggerInterface */
-    protected static $logger;
+    /**
+     * @param LoggerInterface $logger
+     */
+    public function setLogger(LoggerInterface $logger): void
+    {
+        static::$logger = $logger;
+    }
 
     /**
      * @param LoggableAnnotate $annotation
      * @param MethodInvocation $invocation
      * @return array
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     protected function logFormatter(
         LoggableAnnotate $annotation,
         MethodInvocation $invocation
-    ): array {
+    ): array
+    {
         $context = [];
         $arguments = $invocation->getArguments();
         foreach ($invocation->getMethod()->getParameters() as $parameter) {
             $context['args'][$parameter->name] = isset($arguments[$parameter->getPosition()]) ?
                 $arguments[$parameter->getPosition()] :
-                    ($parameter->isDefaultValueAvailable() ? $parameter->getDefaultValue() : null);
+                ($parameter->isDefaultValueAvailable() ? $parameter->getDefaultValue() : null);
         }
 
         return [
-            'level'   => $annotation->value,
+            'level' => $annotation->value,
             'message' => sprintf(
                 $this->format,
                 $annotation->name,
@@ -64,13 +72,5 @@ abstract class AbstractLogger
             ),
             'context' => $context,
         ];
-    }
-
-    /**
-     * @param LoggerInterface $logger
-     */
-    public function setLogger(LoggerInterface $logger): void
-    {
-        static::$logger = $logger;
     }
 }

@@ -20,7 +20,6 @@ declare(strict_types=1);
 namespace Ytake\LaravelAspect\Interceptor;
 
 use Ray\Aop\MethodInvocation;
-
 use function is_array;
 
 /**

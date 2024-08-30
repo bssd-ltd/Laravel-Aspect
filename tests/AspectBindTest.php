@@ -1,11 +1,15 @@
 <?php
 
+use Illuminate\Filesystem\Filesystem;
+use Ray\Aop\Bind;
+use Ytake\LaravelAspect\AspectBind;
+
 /**
  * Class AspectBindTest
  */
 class AspectBindTest extends AspectTestCase
 {
-    /** @var \Illuminate\Filesystem\Filesystem */
+    /** @var Filesystem */
     protected $file;
 
     public function setUp(): void
@@ -16,30 +20,13 @@ class AspectBindTest extends AspectTestCase
 
     public function testShouldReturnNoCacheableBindInstance()
     {
-        $bind = new \Ytake\LaravelAspect\AspectBind(
+        $bind = new AspectBind(
             $this->file,
             $this->getDir(),
             false
         );
-        $this->assertInstanceOf(\Ray\Aop\Bind::class, $bind->bind(StubBindableClass::class, []));
+        $this->assertInstanceOf(Bind::class, $bind->bind(StubBindableClass::class, []));
         $this->assertFalse($this->file->exists($this->getDir()));
-    }
-
-    public function testShouldReturnCacheableBindInstance()
-    {
-        $bind = new \Ytake\LaravelAspect\AspectBind(
-            $this->file,
-            $this->getDir(),
-            true
-        );
-        $this->assertInstanceOf(\Ray\Aop\Bind::class, $bind->bind(StubBindableClass::class, []));
-        $this->assertTrue($this->file->exists($this->getDir()));
-    }
-
-    public function tearDown(): void
-    {
-        $this->file->deleteDirectory($this->getDir());
-        parent::tearDown();
     }
 
     /**
@@ -47,7 +34,24 @@ class AspectBindTest extends AspectTestCase
      */
     protected function getDir()
     {
-        return  __DIR__ . '/storage/tmp';
+        return __DIR__ . '/storage/tmp';
+    }
+
+    public function testShouldReturnCacheableBindInstance()
+    {
+        $bind = new AspectBind(
+            $this->file,
+            $this->getDir(),
+            true
+        );
+        $this->assertInstanceOf(Bind::class, $bind->bind(StubBindableClass::class, []));
+        $this->assertTrue($this->file->exists($this->getDir()));
+    }
+
+    public function tearDown(): void
+    {
+        $this->file->deleteDirectory($this->getDir());
+        parent::tearDown();
     }
 }
 

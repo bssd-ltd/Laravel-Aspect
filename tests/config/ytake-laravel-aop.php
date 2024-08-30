@@ -12,8 +12,8 @@ return [
         /**
          *
          */
-        'drivers'     => [
-            'ray'  => [
+        'drivers' => [
+            'ray' => [
                 'force_compile' => false,
 
                 // string Path to the cache directory where compiled classes will be stored

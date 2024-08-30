@@ -19,16 +19,16 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\Queue;
 
-use ReflectionClass;
-use Ray\Aop\MethodInvocation;
 use Illuminate\Bus\Queueable;
 use Illuminate\Container\Container;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-
-use function get_class;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Ray\Aop\MethodInvocation;
+use ReflectionClass;
+use ReflectionException;
 use function array_values;
+use function get_class;
 
 /**
  * Class LazyMessage
@@ -53,7 +53,7 @@ class LazyMessage implements ShouldQueue
     /**
      * @param Container $container
      *
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function handle(Container $container)
     {

@@ -19,8 +19,8 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\Transaction;
 
-use Ray\Aop\MethodInvocation;
 use Illuminate\Database\DatabaseManager;
+use Ray\Aop\MethodInvocation;
 
 /**
  * Class Execute
@@ -42,16 +42,17 @@ final class Execute implements Runnable
 
     /**
      * @param DatabaseManager $databaseManager
-     * @param string          $exceptionName
-     * @param callable        $invoker
+     * @param string $exceptionName
+     * @param callable $invoker
      *
      * @return object
      */
     public function __invoke(
         DatabaseManager $databaseManager,
-        string $exceptionName,
-        callable $invoker
-    ) {
+        string          $exceptionName,
+        callable        $invoker
+    )
+    {
         return $this->invocation->proceed();
     }
 }

@@ -19,12 +19,10 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect;
 
-use Ytake\LaravelAspect\Annotation;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
-
-use function count;
 use function array_merge;
+use function count;
 
 /**
  * Class AnnotationConfiguration
@@ -63,21 +61,6 @@ class AnnotationConfiguration
         $this->registerAnnotations();
     }
 
-    /**
-     * Add a new annotation to the globally ignored annotation names with regard to exception handling.
-     */
-    public function ignoredAnnotations(): void
-    {
-        if (isset($this->configuration['ignores'])) {
-            $ignores = $this->configuration['ignores'];
-            if (count($ignores)) {
-                foreach ($ignores as $ignore) {
-                    AnnotationReader::addGlobalIgnoredName($ignore);
-                }
-            }
-        }
-    }
-
     protected function registerAnnotations(): void
     {
         $this->annotations = array_merge(
@@ -92,6 +75,21 @@ class AnnotationConfiguration
         }
         foreach ($this->annotations as $annotation) {
             AnnotationRegistry::loadAnnotationClass($annotation);
+        }
+    }
+
+    /**
+     * Add a new annotation to the globally ignored annotation names with regard to exception handling.
+     */
+    public function ignoredAnnotations(): void
+    {
+        if (isset($this->configuration['ignores'])) {
+            $ignores = $this->configuration['ignores'];
+            if (count($ignores)) {
+                foreach ($ignores as $ignore) {
+                    AnnotationReader::addGlobalIgnoredName($ignore);
+                }
+            }
         }
     }
 }

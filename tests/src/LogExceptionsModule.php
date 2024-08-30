@@ -10,7 +10,7 @@ class LogExceptionsModule extends Loggable
      * @var array
      */
     protected $classes = [
-        \__Test\AspectLogExceptions::class,
-        \__Test\AnnotationStub::class
+        AspectLogExceptions::class,
+        AnnotationStub::class
     ];
 }

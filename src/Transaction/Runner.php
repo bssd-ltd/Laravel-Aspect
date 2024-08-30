@@ -19,8 +19,9 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\Transaction;
 
+use Closure;
+use Exception;
 use Illuminate\Database\DatabaseManager;
-
 use function array_shift;
 use function is_null;
 
@@ -44,10 +45,10 @@ final class Runner
 
     /**
      * @param DatabaseManager $databaseManager
-     * @param string          $exceptionName
+     * @param string $exceptionName
      *
-     * @return \Closure|mixed
-     * @throws \Exception
+     * @return Closure|mixed
+     * @throws Exception
      */
     public function __invoke(DatabaseManager $databaseManager, string $exceptionName)
     {

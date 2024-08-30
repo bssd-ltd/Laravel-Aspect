@@ -5,9 +5,10 @@
 
 namespace __Test;
 
+use Exception;
+use Illuminate\Database\ConnectionResolverInterface;
 use Ytake\LaravelAspect\Annotation\QueryLog;
 use Ytake\LaravelAspect\Annotation\Transactional;
-use Illuminate\Database\ConnectionResolverInterface;
 
 /**
  * Class AspectQueryLog
@@ -48,7 +49,7 @@ class AspectQueryLog
         $this->db->connection()->statement('CREATE TABLE tests (test varchar(255) NOT NULL)');
 
         $this->db->connection()->table("tests")->insert($record);
-        throw new \Exception;
+        throw new Exception;
     }
 
     /**

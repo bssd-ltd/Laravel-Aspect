@@ -29,17 +29,6 @@ class AspectMessageDriven
     }
 
     /**
-     * @MessageDriven(
-     *     @EagerQueue
-     * )
-     * @param string $message
-     */
-    public function eagerExec(string $message)
-    {
-        $this->logWith($message);
-    }
-
-    /**
      * @Loggable(name="Queued")
      * @param string $message
      *
@@ -48,5 +37,16 @@ class AspectMessageDriven
     public function logWith(string $message)
     {
         return "Hello $message";
+    }
+
+    /**
+     * @MessageDriven(
+     *     @EagerQueue
+     * )
+     * @param string $message
+     */
+    public function eagerExec(string $message)
+    {
+        $this->logWith($message);
     }
 }

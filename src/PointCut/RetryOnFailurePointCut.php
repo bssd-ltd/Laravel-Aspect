@@ -35,7 +35,7 @@ class RetryOnFailurePointCut extends CommonPointCut implements PointCutable
     /**
      * @param Container $app
      *
-     * @return \Ray\Aop\Pointcut
+     * @return Pointcut
      */
     public function configure(Container $app): Pointcut
     {

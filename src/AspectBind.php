@@ -19,13 +19,15 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect;
 
+use Doctrine\Common\Annotations\AnnotationException;
 use Illuminate\Filesystem\Filesystem;
 use Ray\Aop\Bind;
-
-use function str_replace;
-use function serialize;
-use function unserialize;
+use Ray\Aop\BindInterface;
+use ReflectionException;
 use function file_get_contents;
+use function serialize;
+use function str_replace;
+use function unserialize;
 
 /**
  * Class AspectBind
@@ -48,14 +50,15 @@ class AspectBind
      * AspectBind constructor.
      *
      * @param Filesystem $filesystem
-     * @param string     $path
-     * @param bool       $cacheable
+     * @param string $path
+     * @param bool $cacheable
      */
     public function __construct(
         Filesystem $filesystem,
-        string $path,
-        bool $cacheable = false
-    ) {
+        string     $path,
+        bool       $cacheable = false
+    )
+    {
         $this->filesystem = $filesystem;
         $this->cacheable = $cacheable;
         $this->path = $path;
@@ -64,9 +67,9 @@ class AspectBind
     /**
      * @param string $class
      * @param array $pointcuts
-     * @return mixed|\Ray\Aop\BindInterface
-     * @throws \Doctrine\Common\Annotations\AnnotationException
-     * @throws \ReflectionException
+     * @return mixed|BindInterface
+     * @throws AnnotationException
+     * @throws ReflectionException
      */
     public function bind(string $class, array $pointcuts)
     {

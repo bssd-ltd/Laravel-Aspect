@@ -1,36 +1,40 @@
 <?php
 
+use __Test\AnnotationStub;
+use __Test\LogExceptionsModule;
+use Ytake\LaravelAspect\AspectManager;
+use Ytake\LaravelAspect\RayAspectKernel;
+
 /**
  * Class IgnoreAnnotationTest
  */
 class IgnoreAnnotationTest extends AspectTestCase
 {
-    /** @var \Ytake\LaravelAspect\AspectManager $manager */
+    /** @var AspectManager $manager */
     protected $manager;
+
+    public function testGenerateCacheNameRemoveNullKey()
+    {
+        /** @var AnnotationStub $class */
+        $class = $this->app->make(AnnotationStub::class);
+        $this->assertNull($class->testing());
+    }
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
+        $this->manager = new AspectManager($this->app);
         $this->resolveManager();
     }
-
-    public function testGenerateCacheNameRemoveNullKey()
-    {
-        /** @var \__Test\AnnotationStub $class */
-        $class = $this->app->make(\__Test\AnnotationStub::class);
-        $this->assertNull($class->testing());
-    }
-
 
     /**
      *
      */
     protected function resolveManager()
     {
-        /** @var \Ytake\LaravelAspect\RayAspectKernel $aspect */
+        /** @var RayAspectKernel $aspect */
         $aspect = $this->manager->driver('ray');
-        $aspect->register(\__Test\LogExceptionsModule::class);
+        $aspect->register(LogExceptionsModule::class);
         $aspect->weave();
     }
 }

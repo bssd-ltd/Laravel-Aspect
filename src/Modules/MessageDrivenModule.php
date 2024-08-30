@@ -19,8 +19,8 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\Modules;
 
-use Ytake\LaravelAspect\PointCut\PointCutable;
 use Ytake\LaravelAspect\PointCut\MessageDrivenPointCut;
+use Ytake\LaravelAspect\PointCut\PointCutable;
 
 /**
  * Class MessageDrivenModule

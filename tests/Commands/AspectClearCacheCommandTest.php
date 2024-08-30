@@ -1,37 +1,31 @@
 <?php
 
+use __Test\AspectCacheable;
+use __Test\CacheableModule;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\BufferedOutput;
+use Ytake\LaravelAspect\AspectManager;
+use Ytake\LaravelAspect\Console\ClearCacheCommand;
+
 /**
  * Class AspectClearCacheCommandTest
  */
-class AspectClearCacheCommandTest extends \AspectTestCase
+class AspectClearCacheCommandTest extends AspectTestCase
 {
-    /** @var \Ytake\LaravelAspect\AspectManager $manager */
+    /** @var AspectManager $manager */
     protected $manager;
 
-    /** @var \Ytake\LaravelAspect\Console\ClearCacheCommand */
+    /** @var ClearCacheCommand */
     protected $command;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->manager = new \Ytake\LaravelAspect\AspectManager($this->app);
-        $this->resolveManager();
-
-        $this->command = new \Ytake\LaravelAspect\Console\ClearCacheCommand(
-            $this->app['config'],
-            $this->app['files']
-        );
-        $this->command->setLaravel(new MockApplication());
-    }
 
     public function testCacheClearFile()
     {
-        $cache = $this->app->make(\__Test\AspectCacheable::class);
+        $cache = $this->app->make(AspectCacheable::class);
         $cache->namedMultipleNameAndKey(1000, 'testing');
 
-        $output = new \Symfony\Component\Console\Output\BufferedOutput();
+        $output = new BufferedOutput();
         $this->command->run(
-            new \Symfony\Component\Console\Input\ArrayInput([]),
+            new ArrayInput([]),
             $output
         );
         $this->assertSame('aspect code cache clear!', trim($output->fetch()));
@@ -44,12 +38,25 @@ class AspectClearCacheCommandTest extends \AspectTestCase
         }
     }
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->manager = new AspectManager($this->app);
+        $this->resolveManager();
+
+        $this->command = new ClearCacheCommand(
+            $this->app['config'],
+            $this->app['files']
+        );
+        $this->command->setLaravel(new MockApplication());
+    }
+
     /**
      *
      */
     protected function resolveManager()
     {
         $aspect = $this->manager->driver('ray');
-        $aspect->register(\__Test\CacheableModule::class);
+        $aspect->register(CacheableModule::class);
     }
 }

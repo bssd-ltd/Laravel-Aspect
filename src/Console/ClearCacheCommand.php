@@ -20,8 +20,8 @@ declare(strict_types=1);
 namespace Ytake\LaravelAspect\Console;
 
 use Illuminate\Console\Command;
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
+use Illuminate\Filesystem\Filesystem;
 
 /**
  * Class ClearCacheCommand
@@ -42,7 +42,7 @@ class ClearCacheCommand extends Command
 
     /**
      * @param ConfigRepository $config
-     * @param Filesystem       $filesystem
+     * @param Filesystem $filesystem
      */
     public function __construct(ConfigRepository $config, Filesystem $filesystem)
     {

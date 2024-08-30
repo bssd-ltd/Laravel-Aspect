@@ -3,6 +3,7 @@
 /**
  * for test
  */
+
 namespace __Test;
 
 use Ytake\LaravelAspect\Annotation\Cacheable;

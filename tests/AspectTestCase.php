@@ -1,15 +1,30 @@
 <?php
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\DatabaseManager;
+use Illuminate\Bus\BusServiceProvider;
+use Illuminate\Cache\CacheManager;
+use Illuminate\Config\Repository;
+use Illuminate\Container\Container;
+use Illuminate\Contracts\Cache\Factory;
+use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Connectors\ConnectionFactory;
+use Illuminate\Database\DatabaseManager;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Encryption\EncryptionServiceProvider;
+use Illuminate\Events\EventServiceProvider;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Log\LogManager;
+use Illuminate\Queue\QueueServiceProvider;
+use PHPUnit\Framework\TestCase;
+use Ytake\LaravelAspect\AnnotationConfiguration;
+use Ytake\LaravelAspect\AspectManager;
 
 /**
  * Class AspectTestCase
  */
-class AspectTestCase extends \PHPUnit\Framework\TestCase
+class AspectTestCase extends TestCase
 {
-    /** @var \Illuminate\Container\Container $app */
+    /** @var Container $app */
     protected $app;
 
     protected function setUp(): void
@@ -17,12 +32,64 @@ class AspectTestCase extends \PHPUnit\Framework\TestCase
         $this->createApplicationContainer();
     }
 
+    protected function createApplicationContainer()
+    {
+        $this->app = new class() extends Container {
+            public function storagePath()
+            {
+                return __DIR__;
+            }
+
+            public function runningUnitTests()
+            {
+                return true;
+            }
+        };
+        $this->app->singleton('config', function () {
+            return new Repository;
+        });
+        $logManager = new LogManager($this->app);
+        $this->app->instance('log', $logManager);
+        $this->app->instance('Psr\Log\LoggerInterface', $logManager);
+        $eventProvider = new EventServiceProvider($this->app);
+        $eventProvider->register();
+        $busServiceProvider = new BusServiceProvider($this->app);
+        $busServiceProvider->register();
+        $queueServiceProvider = new QueueServiceProvider($this->app);
+        $queueServiceProvider->register();
+        $encryptionServiceProvider = new EncryptionServiceProvider($this->app);
+        $encryptionServiceProvider->register();
+        $this->app->alias('queue', \Illuminate\Contracts\Queue\Factory::class);
+        $this->app->alias('events', Dispatcher::class);
+        $this->registerConfigure();
+        $this->registerDatabase();
+        $this->registerCache();
+        $annotationConfiguration = new AnnotationConfiguration(
+            $this->app['config']->get('ytake-laravel-aop.annotation')
+        );
+        $annotationConfiguration->ignoredAnnotations();
+        $this->app->singleton('aspect.manager', function ($app) {
+            return new AspectManager($app);
+        });
+        $this->app->bind(
+            \Illuminate\Contracts\Container\Container::class,
+            Container::class
+        );
+        $this->app->bind(
+            Container::class,
+            function () {
+                return $this->app;
+            }
+        );
+        Container::setInstance($this->app);
+    }
+
     /**
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws FileNotFoundException
      */
     protected function registerConfigure()
     {
-        $filesystem = new \Illuminate\Filesystem\Filesystem;
+        $filesystem = new Filesystem;
 
         $this->app['config']->set(
             "ytake-laravel-aop",
@@ -47,7 +114,7 @@ class AspectTestCase extends \PHPUnit\Framework\TestCase
         $this->app['config']->set(
             'app',
             [
-                'key'    => 'base64:vL6wZyxF+/4DhgKiNoA3k80pwdX2VwvLDSig9juMk8g=',
+                'key' => 'base64:vL6wZyxF+/4DhgKiNoA3k80pwdX2VwvLDSig9juMk8g=',
                 'cipher' => 'AES-256-CBC',
             ]
         );
@@ -70,65 +137,13 @@ class AspectTestCase extends \PHPUnit\Framework\TestCase
     protected function registerCache()
     {
         $this->app->singleton('cache', function ($app) {
-            return new \Illuminate\Cache\CacheManager($app);
+            return new CacheManager($app);
         });
 
         $this->app->singleton('cache.store', function ($app) {
             return $app['cache']->driver();
         });
-        $this->app->alias('cache', \Illuminate\Contracts\Cache\Factory::class);
-    }
-
-    protected function createApplicationContainer()
-    {
-        $this->app = new class() extends \Illuminate\Container\Container {
-            public function storagePath()
-            {
-                return __DIR__;
-            }
-
-            public function runningUnitTests()
-            {
-                return true;
-            }
-        };
-        $this->app->singleton('config', function () {
-            return new \Illuminate\Config\Repository;
-        });
-        $logManager = new \Illuminate\Log\LogManager($this->app);
-        $this->app->instance('log', $logManager);
-        $this->app->instance('Psr\Log\LoggerInterface', $logManager);
-        $eventProvider = new \Illuminate\Events\EventServiceProvider($this->app);
-        $eventProvider->register();
-        $busServiceProvider = new \Illuminate\Bus\BusServiceProvider($this->app);
-        $busServiceProvider->register();
-        $queueServiceProvider = new \Illuminate\Queue\QueueServiceProvider($this->app);
-        $queueServiceProvider->register();
-        $encryptionServiceProvider = new \Illuminate\Encryption\EncryptionServiceProvider($this->app);
-        $encryptionServiceProvider->register();
-        $this->app->alias('queue', \Illuminate\Contracts\Queue\Factory::class);
-        $this->app->alias('events', \Illuminate\Contracts\Events\Dispatcher::class);
-        $this->registerConfigure();
-        $this->registerDatabase();
-        $this->registerCache();
-        $annotationConfiguration = new \Ytake\LaravelAspect\AnnotationConfiguration(
-            $this->app['config']->get('ytake-laravel-aop.annotation')
-        );
-        $annotationConfiguration->ignoredAnnotations();
-        $this->app->singleton('aspect.manager', function ($app) {
-            return new \Ytake\LaravelAspect\AspectManager($app);
-        });
-        $this->app->bind(
-            \Illuminate\Contracts\Container\Container::class,
-            \Illuminate\Container\Container::class
-        );
-        $this->app->bind(
-            \Illuminate\Container\Container::class,
-            function () {
-                return $this->app;
-            }
-        );
-        \Illuminate\Container\Container::setInstance($this->app);
+        $this->app->alias('cache', Factory::class);
     }
 
     /**

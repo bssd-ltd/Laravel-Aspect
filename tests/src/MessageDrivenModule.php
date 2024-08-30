@@ -7,7 +7,7 @@ namespace __Test;
  */
 class MessageDrivenModule extends \Ytake\LaravelAspect\Modules\MessageDrivenModule
 {
-    /** @var array  */
+    /** @var array */
     protected $classes = [
         AspectMessageDriven::class,
     ];

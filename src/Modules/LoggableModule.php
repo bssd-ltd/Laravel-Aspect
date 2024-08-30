@@ -19,8 +19,8 @@ declare(strict_types=1);
 
 namespace Ytake\LaravelAspect\Modules;
 
-use Ytake\LaravelAspect\PointCut\PointCutable;
 use Ytake\LaravelAspect\PointCut\LoggablePointCut;
+use Ytake\LaravelAspect\PointCut\PointCutable;
 
 /**
  * Class LoggableModule
