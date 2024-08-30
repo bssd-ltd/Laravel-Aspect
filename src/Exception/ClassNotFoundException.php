@@ -18,7 +18,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Exception;
+namespace Bssd\LaravelAspect\Exception;
 
 use Exception;
 

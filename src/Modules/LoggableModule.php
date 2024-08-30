@@ -18,10 +18,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Modules;
+namespace Bssd\LaravelAspect\Modules;
 
-use Ytake\LaravelAspect\PointCut\LoggablePointCut;
-use Ytake\LaravelAspect\PointCut\PointCutable;
+use Bssd\LaravelAspect\PointCut\LoggablePointCut;
+use Bssd\LaravelAspect\PointCut\PointCutable;
 
 /**
  * Class LoggableModule

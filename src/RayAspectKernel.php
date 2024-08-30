@@ -18,10 +18,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect;
+namespace Bssd\LaravelAspect;
 
-use Ytake\LaravelAspect\Exception\ClassNotFoundException;
-use Ytake\LaravelAspect\Modules\AspectModule;
+use Bssd\LaravelAspect\Exception\ClassNotFoundException;
+use Bssd\LaravelAspect\Modules\AspectModule;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Filesystem\Filesystem;
 use Ray\Aop\Compiler;

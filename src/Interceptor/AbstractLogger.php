@@ -18,9 +18,9 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Interceptor;
+namespace Bssd\LaravelAspect\Interceptor;
 
-use Ytake\LaravelAspect\Annotation\LoggableAnnotate;
+use Bssd\LaravelAspect\Annotation\LoggableAnnotate;
 use Psr\Log\LoggerInterface;
 use Ray\Aop\MethodInvocation;
 

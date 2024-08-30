@@ -18,10 +18,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\PointCut;
+namespace Bssd\LaravelAspect\PointCut;
 
-use Ytake\LaravelAspect\Annotation\CacheEvict;
-use Ytake\LaravelAspect\Interceptor\CacheEvictInterceptor;
+use Bssd\LaravelAspect\Annotation\CacheEvict;
+use Bssd\LaravelAspect\Interceptor\CacheEvictInterceptor;
 use Illuminate\Contracts\Container\Container;
 use Ray\Aop\Pointcut;
 

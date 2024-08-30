@@ -18,7 +18,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Annotation;
+namespace Bssd\LaravelAspect\Annotation;
 
 /**
  * Class AnnotationReaderTrait

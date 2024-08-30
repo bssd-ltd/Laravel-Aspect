@@ -18,10 +18,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Modules;
+namespace Bssd\LaravelAspect\Modules;
 
-use Ytake\LaravelAspect\PointCut\LogExceptionsPointCut;
-use Ytake\LaravelAspect\PointCut\PointCutable;
+use Bssd\LaravelAspect\PointCut\LogExceptionsPointCut;
+use Bssd\LaravelAspect\PointCut\PointCutable;
 
 /**
  * Class LogExceptions

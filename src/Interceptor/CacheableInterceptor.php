@@ -18,9 +18,9 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Interceptor;
+namespace Bssd\LaravelAspect\Interceptor;
 
-use Ytake\LaravelAspect\Annotation\Cacheable;
+use Bssd\LaravelAspect\Annotation\Cacheable;
 use Ray\Aop\MethodInvocation;
 
 use function is_array;

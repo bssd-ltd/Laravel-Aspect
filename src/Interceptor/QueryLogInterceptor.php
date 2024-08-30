@@ -18,10 +18,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Interceptor;
+namespace Bssd\LaravelAspect\Interceptor;
 
-use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
-use Ytake\LaravelAspect\Annotation\QueryLog;
+use Bssd\LaravelAspect\Annotation\AnnotationReaderTrait;
+use Bssd\LaravelAspect\Annotation\QueryLog;
 use Illuminate\Contracts\Events\Dispatcher as EventDispatcher;
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Log\LogManager;

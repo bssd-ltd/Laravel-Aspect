@@ -18,12 +18,12 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Interceptor;
+namespace Bssd\LaravelAspect\Interceptor;
 
-use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
-use Ytake\LaravelAspect\Transaction\Execute;
-use Ytake\LaravelAspect\Transaction\Runner;
-use Ytake\LaravelAspect\Transaction\TransactionInvoker;
+use Bssd\LaravelAspect\Annotation\AnnotationReaderTrait;
+use Bssd\LaravelAspect\Transaction\Execute;
+use Bssd\LaravelAspect\Transaction\Runner;
+use Bssd\LaravelAspect\Transaction\TransactionInvoker;
 use Illuminate\Database\DatabaseManager;
 use Ray\Aop\MethodInterceptor;
 use Ray\Aop\MethodInvocation;

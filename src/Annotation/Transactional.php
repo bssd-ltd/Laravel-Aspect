@@ -18,7 +18,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Annotation;
+namespace Bssd\LaravelAspect\Annotation;
 
 use Doctrine\Common\Annotations\Annotation;
 use Illuminate\Database\QueryException;

@@ -18,9 +18,9 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Interceptor;
+namespace Bssd\LaravelAspect\Interceptor;
 
-use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
+use Bssd\LaravelAspect\Annotation\AnnotationReaderTrait;
 use Exception;
 use Illuminate\Log\LogManager;
 use Ray\Aop\MethodInterceptor;

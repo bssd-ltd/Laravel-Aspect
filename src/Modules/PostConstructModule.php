@@ -18,10 +18,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Ytake\LaravelAspect\Modules;
+namespace Bssd\LaravelAspect\Modules;
 
-use Ytake\LaravelAspect\PointCut\PointCutable;
-use Ytake\LaravelAspect\PointCut\PostConstructPointCut;
+use Bssd\LaravelAspect\PointCut\PointCutable;
+use Bssd\LaravelAspect\PointCut\PostConstructPointCut;
 
 /**
  * Class PostConstructModule
