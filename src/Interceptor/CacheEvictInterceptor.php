@@ -18,7 +18,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Bssd\LaravelAspect\Interceptor;
+namespace Ytake\LaravelAspect\Interceptor;
 
 use Ray\Aop\MethodInvocation;
 

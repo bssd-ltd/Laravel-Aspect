@@ -18,7 +18,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Bssd\LaravelAspect\PointCut;
+namespace Ytake\LaravelAspect\PointCut;
 
 use Illuminate\Contracts\Container\Container;
 use Ray\Aop\Pointcut;

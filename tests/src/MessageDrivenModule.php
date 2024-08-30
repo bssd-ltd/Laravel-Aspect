@@ -5,9 +5,9 @@ namespace __Test;
 /**
  * Class MessageDrivenModule
  */
-class MessageDrivenModule extends \Bssd\LaravelAspect\Modules\MessageDrivenModule
+class MessageDrivenModule extends \Ytake\LaravelAspect\Modules\MessageDrivenModule
 {
-    /** @var array  */
+    /** @var array */
     protected $classes = [
         AspectMessageDriven::class,
     ];

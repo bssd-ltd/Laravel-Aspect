@@ -1,26 +1,24 @@
 <?php
 declare(strict_types=1);
 
+use __Test\AspectMessageDriven;
+use __Test\MessageDrivenModule;
+use Doctrine\Common\Annotations\AnnotationReader;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Bus\Dispatcher;
-use Bssd\LaravelAspect\Annotation\MessageDriven;
-use Bssd\LaravelAspect\Interceptor\MessageDrivenInterceptor;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use Ray\Aop\MethodInvocation;
+use Ytake\LaravelAspect\Annotation\MessageDriven;
+use Ytake\LaravelAspect\AspectManager;
+use Ytake\LaravelAspect\Interceptor\MessageDrivenInterceptor;
 
-final class MessageDrivenInterceptorTest extends \AspectTestCase
+final class MessageDrivenInterceptorTest extends AspectTestCase
 {
-    /** @var \Bssd\LaravelAspect\AspectManager $manager */
+    /** @var AspectManager $manager */
     protected $manager;
 
     /** @var  MessageDrivenInterceptor */
     private $interceptor;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->manager = new \Bssd\LaravelAspect\AspectManager($this->app);
-        $this->resolveManager();
-        $this->interceptor = new MessageDrivenInterceptor;
-    }
 
     public function testShouldDispatchMethod(): void
     {
@@ -34,30 +32,38 @@ final class MessageDrivenInterceptorTest extends \AspectTestCase
         );
     }
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->manager = new AspectManager($this->app);
+        $this->resolveManager();
+        $this->interceptor = new MessageDrivenInterceptor;
+    }
+
     /**
      *
      */
     protected function resolveManager()
     {
         $aspect = $this->manager->driver('ray');
-        $aspect->register(\__Test\MessageDrivenModule::class);
+        $aspect->register(MessageDrivenModule::class);
         $aspect->weave();
     }
 }
 
-class StubMessageDrivenInvocation implements \Ray\Aop\MethodInvocation
+class StubMessageDrivenInvocation implements MethodInvocation
 {
     /** @var ReflectionMethod */
     protected $reflectionMethod;
 
-    public function getNamedArguments(): \ArrayObject
+    public function getNamedArguments(): ArrayObject
     {
-        return new \ArrayObject([]);
+        return new ArrayObject([]);
     }
 
-    public function getArguments(): \ArrayObject
+    public function getArguments(): ArrayObject
     {
-        return new \ArrayObject(['argument' => 'this']);
+        return new ArrayObject(['argument' => 'this']);
     }
 
     public function proceed()
@@ -65,22 +71,27 @@ class StubMessageDrivenInvocation implements \Ray\Aop\MethodInvocation
         return $this->intercept()->exec('this');
     }
 
+    protected function intercept()
+    {
+        return new AspectMessageDriven;
+    }
+
     public function getThis()
     {
-        return new \__Test\AspectMessageDriven();
+        return new AspectMessageDriven();
     }
 
     /**
      * @return \Ray\Aop\ReflectionMethod
      * @throws ReflectionException
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws BindingResolutionException
      */
     public function getMethod(): \Ray\Aop\ReflectionMethod
     {
-        $reflectionClass = new \ReflectionClass(\__Test\AspectMessageDriven::class);
-        $reflectionMethod = new \Ray\Aop\ReflectionMethod(\__Test\AspectMessageDriven::class, 'exec');
+        $reflectionClass = new ReflectionClass(AspectMessageDriven::class);
+        $reflectionMethod = new \Ray\Aop\ReflectionMethod(AspectMessageDriven::class, 'exec');
         $reflectionMethod->setObject(
-            Container::getInstance()->make(\__Test\AspectMessageDriven::class, []),
+            Container::getInstance()->make(AspectMessageDriven::class, []),
             $reflectionClass->getMethod('exec')
         );
 
@@ -94,13 +105,8 @@ class StubMessageDrivenInvocation implements \Ray\Aop\MethodInvocation
 
     public function getAnnotation($name)
     {
-        $reader = new \Doctrine\Common\Annotations\AnnotationReader();
+        $reader = new AnnotationReader();
 
         return $reader->getMethodAnnotation($this->reflectionMethod, $name);
-    }
-
-    protected function intercept()
-    {
-        return new \__Test\AspectMessageDriven;
     }
 }

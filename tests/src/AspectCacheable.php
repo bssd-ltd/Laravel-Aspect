@@ -5,7 +5,8 @@
 
 namespace __Test;
 
-use Bssd\LaravelAspect\Annotation\Cacheable;
+use stdClass;
+use Ytake\LaravelAspect\Annotation\Cacheable;
 
 /**
  * Class AspectCacheable
@@ -64,11 +65,11 @@ class AspectCacheable
     /**
      * @Cacheable(tags={"testing1","testing2"},key={"#id","#class"})
      * @param           $id
-     * @param \stdClass $class
+     * @param stdClass $class
      *
      * @return mixed
      */
-    public function cachingKeyObject($id, \stdClass $class)
+    public function cachingKeyObject($id, stdClass $class)
     {
         return $id;
     }

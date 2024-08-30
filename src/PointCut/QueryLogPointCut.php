@@ -18,10 +18,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Bssd\LaravelAspect\PointCut;
+namespace Ytake\LaravelAspect\PointCut;
 
-use Bssd\LaravelAspect\Annotation\QueryLog;
-use Bssd\LaravelAspect\Interceptor\QueryLogInterceptor;
+use Ytake\LaravelAspect\Annotation\QueryLog;
+use Ytake\LaravelAspect\Interceptor\QueryLogInterceptor;
 use Illuminate\Contracts\Container\Container;
 use Ray\Aop\Pointcut;
 

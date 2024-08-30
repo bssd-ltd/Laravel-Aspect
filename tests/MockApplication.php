@@ -1,11 +1,15 @@
 <?php
 
+use Illuminate\Container\Container;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\ServiceProvider;
+
 /**
  * Class MockApplication
  *
  * for testing only
  */
-class MockApplication extends \Illuminate\Container\Container implements \Illuminate\Contracts\Foundation\Application
+class MockApplication extends Container implements Application
 {
     public function runningUnitTests()
     {
@@ -60,11 +64,11 @@ class MockApplication extends \Illuminate\Container\Container implements \Illumi
     /**
      * Register a service provider with the application.
      *
-     * @param  \Illuminate\Support\ServiceProvider|string $provider
-     * @param  array                                      $options
-     * @param  bool                                       $force
+     * @param ServiceProvider|string $provider
+     * @param array $options
+     * @param bool $force
      *
-     * @return \Illuminate\Support\ServiceProvider
+     * @return ServiceProvider
      */
     public function register($provider, $options = [], $force = false)
     {
@@ -74,8 +78,8 @@ class MockApplication extends \Illuminate\Container\Container implements \Illumi
     /**
      * Register a deferred provider and service.
      *
-     * @param  string $provider
-     * @param  string $service
+     * @param string $provider
+     * @param string $service
      *
      * @return void
      */
@@ -97,7 +101,7 @@ class MockApplication extends \Illuminate\Container\Container implements \Illumi
     /**
      * Register a new boot listener.
      *
-     * @param  mixed $callback
+     * @param mixed $callback
      *
      * @return void
      */
@@ -109,7 +113,7 @@ class MockApplication extends \Illuminate\Container\Container implements \Illumi
     /**
      * Register a new "booted" listener.
      *
-     * @param  mixed $callback
+     * @param mixed $callback
      *
      * @return void
      */
@@ -121,7 +125,7 @@ class MockApplication extends \Illuminate\Container\Container implements \Illumi
     /**
      * Get the base path of the Laravel installation.
      *
-     * @param  string  $path
+     * @param string $path
      * @return string
      */
     public function basePath($path = '')

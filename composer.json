@@ -1,5 +1,5 @@
 {
-  "name": "bssd-ltd/laravel-aspect",
+  "name": "ytake/laravel-aspect",
   "description": "Aspect Oriented Programming library for laravel framework, and lumen",
   "minimum-stability": "stable",
   "license": "MIT",
@@ -56,7 +56,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Bssd\\LaravelAspect\\": "src/"
+      "Ytake\\LaravelAspect\\": "src/"
     }
   },
   "autoload-dev": {

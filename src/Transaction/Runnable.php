@@ -18,7 +18,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Bssd\LaravelAspect\Transaction;
+namespace Ytake\LaravelAspect\Transaction;
 
 use Illuminate\Database\DatabaseManager;
 

@@ -2,7 +2,9 @@
 
 namespace __Test;
 
-use Bssd\LaravelAspect\Annotation\RetryOnFailure;
+use Exception;
+use LogicException;
+use Ytake\LaravelAspect\Annotation\RetryOnFailure;
 
 /**
  * Class AspectRetryOnFailure
@@ -23,7 +25,7 @@ class AspectRetryOnFailure
     public function call()
     {
         $this->counter += 1;
-        throw new \LogicException;
+        throw new LogicException;
     }
 
     /**
@@ -38,6 +40,6 @@ class AspectRetryOnFailure
     public function ignoreException()
     {
         $this->counter += 1;
-        throw new \Exception;
+        throw new Exception;
     }
 }

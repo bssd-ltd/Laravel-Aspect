@@ -3,8 +3,9 @@ declare(strict_types=1);
 
 namespace __Test;
 
-use Monolog\Logger;
+use Exception;
 use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 use Psr\Log\LoggerInterface;
 
 class TestableLogger
@@ -13,7 +14,7 @@ class TestableLogger
      * @param array $config
      *
      * @return LoggerInterface
-     * @throws \Exception
+     * @throws Exception
      */
     public function __invoke(array $config): LoggerInterface
     {

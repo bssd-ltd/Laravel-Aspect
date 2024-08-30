@@ -18,9 +18,9 @@ declare(strict_types=1);
  *
  */
 
-namespace Bssd\LaravelAspect;
+namespace Ytake\LaravelAspect;
 
-use Bssd\LaravelAspect\Annotation\PostConstruct;
+use Ytake\LaravelAspect\Annotation\PostConstruct;
 use Ray\Aop\WeavedInterface;
 
 use function is_array;

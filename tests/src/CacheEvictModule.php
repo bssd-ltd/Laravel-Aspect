@@ -2,13 +2,13 @@
 
 namespace __Test;
 
-class CacheEvictModule extends \Bssd\LaravelAspect\Modules\CacheEvictModule
+class CacheEvictModule extends \Ytake\LaravelAspect\Modules\CacheEvictModule
 {
     /**
      * @var array
      */
     protected $classes = [
-        \__Test\AspectCacheEvict::class,
-        \__Test\AspectMerge::class
+        AspectCacheEvict::class,
+        AspectMerge::class
     ];
 }

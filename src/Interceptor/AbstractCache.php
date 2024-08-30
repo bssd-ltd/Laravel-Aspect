@@ -18,12 +18,12 @@ declare(strict_types=1);
  *
  */
 
-namespace Bssd\LaravelAspect\Interceptor;
+namespace Ytake\LaravelAspect\Interceptor;
 
-use Bssd\LaravelAspect\Annotation\AnnotationReaderTrait;
-use Bssd\LaravelAspect\Annotation\Cacheable;
-use Bssd\LaravelAspect\Annotation\CacheEvict;
-use Bssd\LaravelAspect\Annotation\CachePut;
+use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
+use Ytake\LaravelAspect\Annotation\Cacheable;
+use Ytake\LaravelAspect\Annotation\CacheEvict;
+use Ytake\LaravelAspect\Annotation\CachePut;
 use Doctrine\Common\Annotations\Annotation;
 use Illuminate\Cache\CacheManager;
 use Illuminate\Contracts\Cache\Factory;

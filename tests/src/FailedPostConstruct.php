@@ -3,16 +3,17 @@
 /**
  * for test
  */
+
 namespace __Test;
 
-use Bssd\LaravelAspect\Annotation\PostConstruct;
+use Ytake\LaravelAspect\Annotation\PostConstruct;
 
 /**
  * Class FailedPostConstruct
  */
 class FailedPostConstruct
 {
-    /** @var int  */
+    /** @var int */
     protected $index;
 
     /**

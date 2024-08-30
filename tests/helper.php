@@ -1,14 +1,15 @@
 <?php
 
 use Illuminate\Container\Container;
+use Illuminate\Foundation\Application;
 
-if (! function_exists('app')) {
+if (!function_exists('app')) {
     /**
      * Get the available container instance.
      *
-     * @param  string  $make
-     * @param  array   $parameters
-     * @return mixed|\Illuminate\Foundation\Application
+     * @param string $make
+     * @param array $parameters
+     * @return mixed|Application
      */
     function app($make = null, $parameters = [])
     {

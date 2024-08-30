@@ -1,33 +1,38 @@
 <?php
 
+use __Test\AspectPostConstruct;
+use __Test\PostConstructModule;
+use Ytake\LaravelAspect\AspectManager;
+use Ytake\LaravelAspect\RayAspectKernel;
+
 /**
  * Class PostConstructTest
  */
-class PostConstructTest extends \AspectTestCase
+class PostConstructTest extends AspectTestCase
 {
-    /** @var \Bssd\LaravelAspect\AspectManager $manager */
+    /** @var AspectManager $manager */
     protected $manager;
+
+    public function testShouldProceedPostConstructSumVariable()
+    {
+        /** @var AspectPostConstruct $class */
+        $class = $this->app->make(AspectPostConstruct::class, ['a' => 1]);
+        $this->assertInstanceOf(AspectPostConstruct::class, $class);
+        $this->assertSame(2, $class->getA());
+    }
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->manager = new \Bssd\LaravelAspect\AspectManager($this->app);
+        $this->manager = new AspectManager($this->app);
         $this->resolveManager();
-    }
-
-    public function testShouldProceedPostConstructSumVariable()
-    {
-        /** @var \__Test\AspectPostConstruct $class */
-        $class = $this->app->make(\__Test\AspectPostConstruct::class, ['a' => 1]);
-        $this->assertInstanceOf(\__Test\AspectPostConstruct::class, $class);
-        $this->assertSame(2, $class->getA());
     }
 
     protected function resolveManager()
     {
-        /** @var \Bssd\LaravelAspect\RayAspectKernel $aspect */
+        /** @var RayAspectKernel $aspect */
         $aspect = $this->manager->driver('ray');
-        $aspect->register(\__Test\PostConstructModule::class);
+        $aspect->register(PostConstructModule::class);
         $aspect->weave();
     }
 }

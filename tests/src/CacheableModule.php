@@ -2,15 +2,17 @@
 
 namespace __Test;
 
-class CacheableModule extends \Bssd\LaravelAspect\Modules\CacheableModule
+use ResolveMockClass;
+
+class CacheableModule extends \Ytake\LaravelAspect\Modules\CacheableModule
 {
     /**
      * @var array
      */
     protected $classes = [
-        \__Test\AspectCacheable::class,
-        \__Test\AspectCacheEvict::class,
-        \__Test\AspectMerge::class,
-        \ResolveMockClass::class,
+        AspectCacheable::class,
+        AspectCacheEvict::class,
+        AspectMerge::class,
+        ResolveMockClass::class,
     ];
 }

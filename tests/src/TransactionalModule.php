@@ -2,7 +2,7 @@
 
 namespace __Test;
 
-use Bssd\LaravelAspect\Modules\TransactionalModule as Transactional;
+use Ytake\LaravelAspect\Modules\TransactionalModule as Transactional;
 
 class TransactionalModule extends Transactional
 {

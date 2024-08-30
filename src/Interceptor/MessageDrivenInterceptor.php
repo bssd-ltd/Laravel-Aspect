@@ -18,13 +18,13 @@ declare(strict_types=1);
  *
  */
 
-namespace Bssd\LaravelAspect\Interceptor;
+namespace Ytake\LaravelAspect\Interceptor;
 
-use Bssd\LaravelAspect\Annotation\AnnotationReaderTrait;
-use Bssd\LaravelAspect\Annotation\LazyQueue;
-use Bssd\LaravelAspect\Annotation\MessageDriven;
-use Bssd\LaravelAspect\Queue\EagerMessage;
-use Bssd\LaravelAspect\Queue\LazyMessage;
+use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
+use Ytake\LaravelAspect\Annotation\LazyQueue;
+use Ytake\LaravelAspect\Annotation\MessageDriven;
+use Ytake\LaravelAspect\Queue\EagerMessage;
+use Ytake\LaravelAspect\Queue\LazyMessage;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Ray\Aop\MethodInterceptor;
 use Ray\Aop\MethodInvocation;

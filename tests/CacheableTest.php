@@ -1,21 +1,19 @@
 <?php
 
-class CacheableTest extends \AspectTestCase
-{
-    /** @var \Bssd\LaravelAspect\AspectManager $manager */
-    protected $manager;
+use __Test\AspectCacheable;
+use __Test\CacheableModule;
+use Illuminate\Cache\CacheManager;
+use Ytake\LaravelAspect\AspectManager;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->manager = new \Bssd\LaravelAspect\AspectManager($this->app);
-        $this->resolveManager();
-    }
+class CacheableTest extends AspectTestCase
+{
+    /** @var AspectManager $manager */
+    protected $manager;
 
     public function testCacheableGenerateCacheNameSingleKey()
     {
-        /** @var \Illuminate\Cache\CacheManager $manager */
-        $cache = $this->app->make(\__Test\AspectCacheable::class);
+        /** @var CacheManager $manager */
+        $cache = $this->app->make(AspectCacheable::class);
         $result = $cache->singleKey(1000);
         $this->assertSame(1000, $result);
         // null cache driver always return null
@@ -34,7 +32,7 @@ class CacheableTest extends \AspectTestCase
 
     public function testCacheableGenerateCacheNameMultipleKey()
     {
-        $cache = $this->app->make(\__Test\AspectCacheable::class);
+        $cache = $this->app->make(AspectCacheable::class);
         $result = $cache->multipleKey(1000, 'testing');
         $this->assertSame(1000, $result);
         $this->assertSame(1000, $this->app['cache']->get('multipleKey:1000:testing'));
@@ -42,7 +40,7 @@ class CacheableTest extends \AspectTestCase
 
     public function testCacheableCacheNameMultipleKey()
     {
-        $cache = $this->app->make(\__Test\AspectCacheable::class);
+        $cache = $this->app->make(AspectCacheable::class);
         $result = $cache->namedMultipleKey(1000, 'testing');
         $this->assertSame(1000, $result);
         $this->assertSame(1000, $this->app['cache']->get('testing1:1000:testing'));
@@ -50,7 +48,7 @@ class CacheableTest extends \AspectTestCase
 
     public function testCacheableCacheNameMultipleNameAndKey()
     {
-        $cache = $this->app->make(\__Test\AspectCacheable::class);
+        $cache = $this->app->make(AspectCacheable::class);
         $result = $cache->namedMultipleNameAndKey(1000, 'testing');
         $this->assertSame(1000, $result);
         $this->assertSame(1000, $this->app['cache']->tags(['testing1', 'testing2'])->get('namedMultipleNameAndKey:1000:testing'));
@@ -58,8 +56,8 @@ class CacheableTest extends \AspectTestCase
 
     public function testCacheableCacheObject()
     {
-        $cache = $this->app->make(\__Test\AspectCacheable::class);
-        $class = new \stdClass;
+        $cache = $this->app->make(AspectCacheable::class);
+        $class = new stdClass;
         $class->title = 'testing';
         $result = $cache->cachingKeyObject(1000, $class);
         $this->assertSame(1000, $result);
@@ -67,10 +65,17 @@ class CacheableTest extends \AspectTestCase
 
     public function testShouldBeNullForNegativeCache()
     {
-        /** @var \__Test\AspectCacheable $cache */
-        $cache = $this->app->make(\__Test\AspectCacheable::class);
+        /** @var AspectCacheable $cache */
+        $cache = $this->app->make(AspectCacheable::class);
         $this->assertNull($cache->negativeCache());
         $this->assertNull($this->app['cache']->get('negative'));
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->manager = new AspectManager($this->app);
+        $this->resolveManager();
     }
 
     /**
@@ -79,7 +84,7 @@ class CacheableTest extends \AspectTestCase
     protected function resolveManager()
     {
         $aspect = $this->manager->driver('ray');
-        $aspect->register(\__Test\CacheableModule::class);
+        $aspect->register(CacheableModule::class);
         $aspect->weave();
     }
 }

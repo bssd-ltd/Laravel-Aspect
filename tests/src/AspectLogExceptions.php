@@ -3,10 +3,13 @@
 /**
  * for test
  */
+
 namespace __Test;
 
-use Bssd\LaravelAspect\Annotation\LogExceptions;
-use Bssd\LaravelAspect\Exception\FileNotFoundException;
+use Exception;
+use LogicException;
+use Ytake\LaravelAspect\Annotation\LogExceptions;
+use Ytake\LaravelAspect\Exception\FileNotFoundException;
 
 class AspectLogExceptions
 {
@@ -14,11 +17,11 @@ class AspectLogExceptions
      * @LogExceptions(driver="custom")
      * @param null $id
      * @return null
-     * @throws \Exception
+     * @throws Exception
      */
     public function normalLog($id = null)
     {
-        throw new \Exception;
+        throw new Exception;
         return $id;
     }
 
@@ -27,7 +30,7 @@ class AspectLogExceptions
      */
     public function expectException()
     {
-        throw new \LogicException;
+        throw new LogicException;
     }
 
     /**

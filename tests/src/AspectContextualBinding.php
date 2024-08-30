@@ -2,7 +2,8 @@
 
 namespace __Test;
 
-use Bssd\LaravelAspect\Annotation\Loggable;
+use ResolveMockInterface;
+use Ytake\LaravelAspect\Annotation\Loggable;
 
 /**
  * Class AspectContextualBinding
@@ -11,15 +12,15 @@ use Bssd\LaravelAspect\Annotation\Loggable;
  */
 class AspectContextualBinding
 {
-    /** @var \ResolveMockInterface  */
+    /** @var ResolveMockInterface */
     protected $resolveMock;
 
     /**
      * AspectContextualBinding constructor.
      *
-     * @param \ResolveMockInterface $resolveMock
+     * @param ResolveMockInterface $resolveMock
      */
-    public function __construct(\ResolveMockInterface $resolveMock)
+    public function __construct(ResolveMockInterface $resolveMock)
     {
         $this->resolveMock = $resolveMock;
     }

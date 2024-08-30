@@ -18,10 +18,10 @@ declare(strict_types=1);
  *
  */
 
-namespace Bssd\LaravelAspect\PointCut;
+namespace Ytake\LaravelAspect\PointCut;
 
-use Bssd\LaravelAspect\Annotation\RetryOnFailure;
-use Bssd\LaravelAspect\Interceptor\RetryOnFailureInterceptor;
+use Ytake\LaravelAspect\Annotation\RetryOnFailure;
+use Ytake\LaravelAspect\Interceptor\RetryOnFailureInterceptor;
 use Illuminate\Contracts\Container\Container;
 use Ray\Aop\Pointcut;
 

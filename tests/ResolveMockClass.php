@@ -8,7 +8,7 @@
 class ResolveMockClass implements ResolveMockInterface
 {
     /**
-     * @\Bssd\LaravelAspect\Annotation\Cacheable(
+     * @\Ytake\LaravelAspect\Annotation\Cacheable(
      *     cacheName="testing.resolve.instance",
      *     driver="array"
      * )

@@ -18,7 +18,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Bssd\LaravelAspect;
+namespace Ytake\LaravelAspect;
 
 use Illuminate\Filesystem\Filesystem;
 use Ray\Aop\Bind;

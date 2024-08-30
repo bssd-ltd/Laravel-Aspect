@@ -18,9 +18,9 @@ declare(strict_types=1);
  *
  */
 
-namespace Bssd\LaravelAspect\Interceptor;
+namespace Ytake\LaravelAspect\Interceptor;
 
-use Bssd\LaravelAspect\Annotation\AnnotationReaderTrait;
+use Ytake\LaravelAspect\Annotation\AnnotationReaderTrait;
 use Exception;
 use Illuminate\Log\LogManager;
 use Ray\Aop\MethodInterceptor;
@@ -41,7 +41,7 @@ class LogExceptionsInterceptor extends AbstractLogger implements MethodIntercept
      */
     public function invoke(MethodInvocation $invocation)
     {
-        /** @var \Bssd\LaravelAspect\Annotation\LogExceptions $annotation */
+        /** @var \Ytake\LaravelAspect\Annotation\LogExceptions $annotation */
         $annotation = $invocation->getMethod()->getAnnotation($this->annotation) ?? new $this->annotation([]);
         try {
             $result = $invocation->proceed();

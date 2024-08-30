@@ -5,9 +5,9 @@ namespace __Test;
 /**
  * Class RetryOnFailureModule
  */
-class RetryOnFailureModule extends \Bssd\LaravelAspect\Modules\RetryOnFailureModule
+class RetryOnFailureModule extends \Ytake\LaravelAspect\Modules\RetryOnFailureModule
 {
-    /** @var array  */
+    /** @var array */
     protected $classes = [
         AspectRetryOnFailure::class,
     ];

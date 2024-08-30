@@ -18,7 +18,7 @@ declare(strict_types=1);
  *
  */
 
-namespace Bssd\LaravelAspect\PointCut;
+namespace Ytake\LaravelAspect\PointCut;
 
 use Ray\Aop\Matcher;
 use Ray\Aop\MethodInterceptor;
